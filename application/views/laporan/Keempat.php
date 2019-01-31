@@ -36,57 +36,71 @@
                                   <td><?php echo $a; ?></td>
                                   <td><?php echo $row->NAMA_IJIN;
                                   $jumlah_total = $row->JUMLAHNYA;
+                                  $kode_ijinnya = $row->ID;
+                                  $nama_ijinnya = $row->NAMA_IJIN;
                                   ?></td>
-                                  <td><?php 
+                                  <td style="text-align: right;"><?php 
                                   $prosesnya = $this->mlaporan->get_proses($tgl_mulai,$tgl_akhir,$judulnya,$row->ID);
-                                    if (!$prosesnya) {
-                                      echo "0";
+                                    if (!$prosesnya) {?>
+                                      <a type="button" data-title='button' class="btn btn-default pull-right" disabled> 0 </a>
+                                    <?php
                                     }
                                     else { 
                                       foreach ($prosesnya as $row){
-                                        echo $row->PROSESNYA;
+                                        ?>
+                                        <a type="button" data-title='button' class="btn btn-primary pull-right" href="<?php echo base_url();?>admin/proses_detail/<?php echo $tgl_mulai;?>/<?php echo $tgl_akhir;?>/<?php $string = str_replace(' ', '_', $nama_ijinnya); echo str_replace('/', '.', $string);?>/<?php echo $kode_ijinnya;?>" target="_blank"> <?php echo $row->PROSESNYA;?> </a>
+                                        <?php
                                         $total_proses = $total_proses + $row->PROSESNYA;
                                       }
                                     }
                                   ?>
                                   </td>
-                                  <td><?php 
+                                  <td style="text-align: right;"><?php 
                                   $pendingnya = $this->mlaporan->get_pending($tgl_mulai,$tgl_akhir,$judulnya,$row->ID);
-                                    if (!$pendingnya) {
-                                      echo "0";
+                                    if (!$pendingnya) {?>
+                                      <a type="button" data-title='button' class="btn btn-default pull-right" disabled> 0 </a>
+                                    <?php
                                     }
                                     else { 
                                       foreach ($pendingnya as $row){
-                                        echo $row->PENDINGNYA;
+                                        ?>
+                                        <a type="button" data-title='button' class="btn btn-primary pull-right" href="<?php echo base_url();?>admin/pending_detail/<?php echo $tgl_mulai;?>/<?php echo $tgl_akhir;?>/<?php $string = str_replace(' ', '_', $nama_ijinnya); echo str_replace('/', '.', $string);?>/<?php echo $kode_ijinnya;?>" target="_blank"> <?php echo $row->PENDINGNYA;?> </a>
+                                        <?php
                                         $total_pending = $total_pending + $row->PENDINGNYA;
                                       }
                                     }
                                   ?></td>
-                                  <td><?php 
+                                  <td style="text-align: right;"><?php 
                                   $tolaknya = $this->mlaporan->get_tolak($tgl_mulai,$tgl_akhir,$judulnya,$row->ID);
-                                  if (!$tolaknya) {
-                                    echo "0";
+                                  if (!$tolaknya) {?>
+                                      <a type="button" data-title='button' class="btn btn-default pull-right" disabled> 0 </a>
+                                    <?php
                                   }
                                   else {
                                     foreach ($tolaknya as $row){
-                                      echo $row->TOLAKNYA;
+                                      ?>
+                                      <a type="button" data-title='button' class="btn btn-primary pull-right" href="<?php echo base_url();?>admin/tolak_detail/<?php echo $tgl_mulai;?>/<?php echo $tgl_akhir;?>/<?php $string = str_replace(' ', '_', $nama_ijinnya); echo str_replace('/', '.', $string);?>/<?php echo $kode_ijinnya;?>" target="_blank"> <?php echo $row->TOLAKNYA;?> </a>
+                                      <?php
                                       $total_tolak = $total_tolak + $row->TOLAKNYA;
                                     }
                                   }
                                   ?></td>
-                                  <td><?php 
+                                  <td style="text-align: right;"><?php 
                                   $selesainya = $this->mlaporan->get_selesai($tgl_mulai,$tgl_akhir,$judulnya,$row->ID);
-                                    if (!$selesainya) {
-                                      echo "0";
+                                    if (!$selesainya) {?>
+                                      <a type="button" data-title='button' class="btn btn-default pull-right" disabled> 0 </a>
+                                    <?php
                                     }
                                     else {  
                                       foreach ($selesainya as $row){
-                                        echo $row->SELESAINYA;
+                                        ?>
+                                        <a type="button" data-title='button' class="btn btn-primary pull-right" href="<?php echo base_url();?>admin/selesai_detail/<?php echo $tgl_mulai;?>/<?php echo $tgl_akhir;?>/<?php $string = str_replace(' ', '_', $nama_ijinnya); echo str_replace('/', '.', $string);?>/<?php echo $kode_ijinnya;?>" target="_blank"> <?php echo $row->SELESAINYA;?> </a>
+                                        <?php
                                         $total_selesai = $total_selesai + $row->SELESAINYA;
                                       }
                                     }
                                   ?></td>
-                                  <td><?php echo $jumlah_total; $a++;?></td>
+                                  <td style="text-align: right;"><?php echo $jumlah_total; $a++;?></td>
                               </tr>
                               <?php endforeach; ?>
                             </tbody>

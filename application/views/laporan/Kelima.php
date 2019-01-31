@@ -67,7 +67,7 @@
                                   <td><?php echo $row->NM_HEADER;?></td>
                                   <td><?php echo $row->JUMLAHNYA; $a++;?></td>
                                   <td>
-                                      <a type="button" data-title='Edit' class="btn btn-primary pull-right" href="<?php echo base_url();?>admin/keempat/<?php echo $tgl_mulai;?>/<?php echo $tgl_akhir;?>/<?php $string = str_replace(' ', '_', $row->NM_HEADER); echo str_replace('/', '%', $string);?>/<?php echo $row->JUMLAHNYA;?>"  target="_blank"> View Details </a>
+                                    <a type="button" data-title='Edit' class="btn btn-primary pull-right" href="<?php echo base_url();?>admin/keempat/<?php echo $tgl_mulai;?>/<?php echo $tgl_akhir;?>/<?php $string = str_replace(' ', '_', $row->NM_HEADER); echo str_replace('/', '.', $string);?>/<?php echo $row->JUMLAHNYA;?>"  target="_blank"> View Details </a>
                                   </td>
                               </tr>
                               <?php endforeach; ?>

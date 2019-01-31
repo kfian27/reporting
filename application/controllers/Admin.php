@@ -90,8 +90,7 @@ class admin extends CI_Controller {
 		//$tanggal = date('Y-m');
 		$this->load->model('mlaporan');
 		$parameternya1 = str_replace('_', ' ', $parameternya);
-		$parameternya1 = str_replace('%', '/', $parameternya1);
-		// $data['nama_skpd'] = $this->mlaporan->get_nm_skpd();
+		$parameternya1 = str_replace('.', '/', $parameternya1);
 		$data['hasilnya'] = $this->mlaporan->get_details_tanggal($tgl_mulai,$tgl_akhir,$parameternya1);
 		$data['judulnya'] = $parameternya1;
 		$data['tgl_mulai'] = $tgl_mulai;
@@ -99,6 +98,58 @@ class admin extends CI_Controller {
 		$data['jumlah_total'] = $jumlah_total;
 		$this->load->view('baseadmin/header.php');
 		$this->load->view('laporan/keempat.php',$data);
+		$this->load->view('baseadmin/footer.php');
+	}
+	public function proses_detail($tgl_mulai,$tgl_akhir,$parameternya,$kd_ijin){
+		$this->load->model('mlaporan');
+		$parameternya1 = str_replace('_', ' ', $parameternya);
+		$parameternya1 = str_replace('.', '/', $parameternya1);
+		$data['hasilnya'] = $this->mlaporan->get_proses_details($tgl_mulai,$tgl_akhir,$kd_ijin);
+		$data['judulnya'] = $parameternya1;
+		$data['tgl_mulai'] = $tgl_mulai;
+		$data['tgl_akhir'] = $tgl_akhir;
+		// $data['jumlah_total'] = $jumlah_total;
+		$this->load->view('baseadmin/header.php');
+		$this->load->view('laporan/proses_detail.php',$data);
+		$this->load->view('baseadmin/footer.php');
+	}
+	public function pending_detail($tgl_mulai,$tgl_akhir,$parameternya,$kd_ijin){
+		$this->load->model('mlaporan');
+		$parameternya1 = str_replace('_', ' ', $parameternya);
+		$parameternya1 = str_replace('.', '/', $parameternya1);
+		$data['hasilnya'] = $this->mlaporan->get_pending_details($tgl_mulai,$tgl_akhir,$kd_ijin);
+		$data['judulnya'] = $parameternya1;
+		$data['tgl_mulai'] = $tgl_mulai;
+		$data['tgl_akhir'] = $tgl_akhir;
+		// $data['jumlah_total'] = $jumlah_total;
+		$this->load->view('baseadmin/header.php');
+		$this->load->view('laporan/pending_detail.php',$data);
+		$this->load->view('baseadmin/footer.php');
+	}
+	public function tolak_detail($tgl_mulai,$tgl_akhir,$parameternya,$kd_ijin){
+		$this->load->model('mlaporan');
+		$parameternya1 = str_replace('_', ' ', $parameternya);
+		$parameternya1 = str_replace('.', '/', $parameternya1);
+		$data['hasilnya'] = $this->mlaporan->get_tolak_details($tgl_mulai,$tgl_akhir,$kd_ijin);
+		$data['judulnya'] = $parameternya1;
+		$data['tgl_mulai'] = $tgl_mulai;
+		$data['tgl_akhir'] = $tgl_akhir;
+		// $data['jumlah_total'] = $jumlah_total;
+		$this->load->view('baseadmin/header.php');
+		$this->load->view('laporan/tolak_detail.php',$data);
+		$this->load->view('baseadmin/footer.php');
+	}
+	public function selesai_detail($tgl_mulai,$tgl_akhir,$parameternya,$kd_ijin){
+		$this->load->model('mlaporan');
+		$parameternya1 = str_replace('_', ' ', $parameternya);
+		$parameternya1 = str_replace('.', '/', $parameternya1);
+		$data['hasilnya'] = $this->mlaporan->get_selesai_details($tgl_mulai,$tgl_akhir,$kd_ijin);
+		$data['judulnya'] = $parameternya1;
+		$data['tgl_mulai'] = $tgl_mulai;
+		$data['tgl_akhir'] = $tgl_akhir;
+		// $data['jumlah_total'] = $jumlah_total;
+		$this->load->view('baseadmin/header.php');
+		$this->load->view('laporan/selesai_detail.php',$data);
 		$this->load->view('baseadmin/footer.php');
 	}
 	public function login(){
