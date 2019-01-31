@@ -131,7 +131,7 @@ DataTable.ext.buttons.print = {
 
 		// Inject the table and other surrounding information
 		win.document.body.innerHTML =
-			'<h1>'+title+'</h1>'+
+			'<h3>'+title+'</h3>'+
 			'<div>'+config.message+'</div>'+
 			html;
 		// $(win.document.body).html(

@@ -61,6 +61,7 @@ class admin extends CI_Controller {
 		$data['hasilnya'] = $this->mlaporan->get_tanggal($this->input->post('tgl_mulai'),$this->input->post('tgl_akhir'),$this->input->post('uptd'));
 		$data['tgl_mulai'] = $this->input->post('tgl_mulai');
 		$data['tgl_akhir'] = $this->input->post('tgl_akhir');
+		$data['dinas'] = $this->input->post('uptd'); 
 		$this->load->view('baseadmin/header.php');
 		$this->load->view('laporan/kelima.php',$data);
 		$this->load->view('baseadmin/footer.php');
@@ -85,14 +86,19 @@ class admin extends CI_Controller {
 		$this->load->view('laporan/ketiga.php');
 		$this->load->view('baseadmin/footer.php');
 	}
-	public function keempat() {
-		$tanggal = date('Y-m');
-		// $data['retailer'] = $this->mlaporan->get_retailer();
-		// $data['order'] = $this->mlaporan->get_order_type();
-		// $data['retailer1'] = $this->mlaporan->get_retailer_type();
-		// $data['product'] = $this->mlaporan->get_product_line();
+	public function keempat($tgl_mulai,$tgl_akhir,$parameternya,$jumlah_total) {
+		//$tanggal = date('Y-m');
+		$this->load->model('mlaporan');
+		$parameternya1 = str_replace('_', ' ', $parameternya);
+		$parameternya1 = str_replace('%', '/', $parameternya1);
+		// $data['nama_skpd'] = $this->mlaporan->get_nm_skpd();
+		$data['hasilnya'] = $this->mlaporan->get_details_tanggal($tgl_mulai,$tgl_akhir,$parameternya1);
+		$data['judulnya'] = $parameternya1;
+		$data['tgl_mulai'] = $tgl_mulai;
+		$data['tgl_akhir'] = $tgl_akhir;
+		$data['jumlah_total'] = $jumlah_total;
 		$this->load->view('baseadmin/header.php');
-		$this->load->view('laporan/keempat.php');
+		$this->load->view('laporan/keempat.php',$data);
 		$this->load->view('baseadmin/footer.php');
 	}
 	public function login(){

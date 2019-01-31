@@ -83,35 +83,4 @@
             var asu3 = $('#uptd').val();
             alert(asu1+','+asu2+','+asu3);
           }
-          function cobacari(){
-            var tgl_mulai = $('#tgl_mulai').val();    
-            var tgl_akhir =  $('#tgl_akhir').val();
-            var uptd =  $('#uptd').val();    
-            var data = {tgl_mulai:tgl_mulai, tgl_akhir:tgl_akhir, uptd:uptd};
-            // alert(tgl_mulai+','+tgl_akhir+','+uptd);
-            generateOrderTable(data);
-          };
-          function generateOrderTable(element){ 
-             $.ajax({
-              url: '<?php echo base_url();?>laporan/getOrderList',
-              data: {'tgl_mulai' : element.tgl_mulai , 'tgl_akhir' : element.tgl_akhir, 'uptd' : element.uptd},
-              type: 'post', 
-              dataType: 'json',    
-              success: function (html) {
-                var dataTable='<table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap"></table>';   
-                var table = $('#datatable-buttons').DataTable({
-                  data: html.data,
-                  "bPaginate": true,
-                  "bLengthChange": true,
-                  "bFilter": false,
-                  "bInfo": true,
-                  "bAutoWidth": true,
-                  columns: [
-                    { title: "Nama Perizinan/Non-Perizinan", "width": "12%"},
-                    { title: "Jumlah Berkas", "width": "16%"},
-                  ],        
-                });
-              }    
-            });
-          }
         </script>

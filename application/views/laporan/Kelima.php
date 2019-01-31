@@ -1,3 +1,9 @@
+       <script type="text/javascript">
+            let mulainya = new Date().toISOString().substr(0, 10);
+            let akhirnya = <?php echo $tgl_akhir;?>.format('DD/MM/YYYY');
+            document.querySelector("#tgl_mulai").value = mulainya;
+            document.querySelector("#tgl_akhir").value = akhirnya;
+        </script>
       <div class="right_col" role="main" id="view">
         <div class="">
           <div class="row">
@@ -6,6 +12,7 @@
                 <div class="x_panel">
                   <div class="x_title">
                     <h1>Report Perizinan/Non-Perizinan SSW</h1>
+                    <h5><?php echo "Periode Berkas Masuk ".date('d F Y', strtotime($tgl_mulai))." Sampai ".date('d F Y', strtotime($tgl_akhir));?></h5>
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
@@ -13,14 +20,14 @@
                       <div class="col-md-12 col-sm-12 col-xs-12 form-group"> <!-- Date input -->
                         <label for="tiga" class="col-sm-2 control-label"> Periode Berkas Masuk </label>
                         <div class="col-md-3 col-sm-10 col-xs-10">
-                          <input type="Date" name="tgl_mulai" id="tgl_mulai" class="form-control" required="required">
+                          <input type="Date" name="tgl_mulai" id="tgl_mulai" class="form-control" value="<?php echo $tgl_mulai;?>" required="required">
                         </div>
                         <div style="float: left; margin-right: 10px; margin-top: 2px; font-size: 20px;">
                           <i class="fa fa-calendar"></i>
                         </div>
                         <label class="col-sm-1 control-label" style="text-align: left;"> Sampai </label>
                         <div class="col-md-3 col-sm-10 col-xs-10">
-                          <input type="Date" name="tgl_akhir" id="tgl_akhir" class="form-control" required="required">
+                          <input type="Date" name="tgl_akhir" id="tgl_akhir" class="form-control" value="<?php echo $tgl_akhir;?>" required="required">
                         </div>
                         <div style="float: left; margin-right: 10px; margin-top: 2px; font-size: 20px;">
                           <i class="fa fa-calendar"></i>
@@ -44,7 +51,7 @@
                     </form>
                     <br />
                     <div class="table-responsive">
-                          <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap">
+                          <table id="coba-table" class="table table-striped table-bordered dt-responsive nowrap">
                             <thead>
                               <tr>
                                 <th>No</th>
@@ -55,14 +62,14 @@
                             </thead>
                             <tbody>
                               <?php $a=1; foreach ($hasilnya as $row): ?>
-                            <tr>
-                                <td><?php echo $a; ?></td>
-                                <td><?php echo $row->NM_HEADER;?></td>
-                                <td><?php echo $row->JUMLAHNYA; $a++;?></td>
-                                <td>
-                                    <button type="button" data-title='Edit' class="btn btn-primary pull-right"> View Details </button>
-                                </td>
-                            </tr>
+                              <tr>
+                                  <td><?php echo $a; ?></td>
+                                  <td><?php echo $row->NM_HEADER;?></td>
+                                  <td><?php echo $row->JUMLAHNYA; $a++;?></td>
+                                  <td>
+                                      <a type="button" data-title='Edit' class="btn btn-primary pull-right" href="<?php echo base_url();?>admin/keempat/<?php echo $tgl_mulai;?>/<?php echo $tgl_akhir;?>/<?php $string = str_replace(' ', '_', $row->NM_HEADER); echo str_replace('/', '%', $string);?>/<?php echo $row->JUMLAHNYA;?>"  target="_blank"> View Details </a>
+                                  </td>
+                              </tr>
                               <?php endforeach; ?>
                             </tbody>
                           </table>
@@ -73,3 +80,35 @@
             </div>
           </div>
         </div>
+        <script type="text/javascript">
+          $(document).ready(function() {
+             $('#uptd').val('<?php echo $dinas;?>');
+             $("#coba-table").DataTable({
+              dom: "Blfrtip",
+              buttons: [
+                {
+                  extend: "copy",
+                  className: "btn-sm"
+                },
+                {
+                  extend: "csv",
+                  className: "btn-sm"
+                },
+                {
+                  extend: "excel",
+                  className: "btn-sm"
+                },
+                {
+                  extend: "pdfHtml5",
+                  className: "btn-sm"
+                },
+                {
+                  extend: "print",
+                  title: 'Kominfo Reporting',
+                  className: "btn-sm"
+                },
+              ],
+              responsive: true
+            });
+          });
+        </script>
