@@ -18,43 +18,43 @@
                   <div class="x_content">
                     <br>
                     <div class="table-responsive">
-                          <table id="coba-table" class="table table-striped table-bordered dt-responsive nowrap">
-                            <thead>
-                              <tr>
-                                <th style="max-width: 10%;">No</th>
-                                <th style="text-align: center; max-width: 10%;">NAMA PERIZINAN/NON PERIZINAN</th>
-                                <th style="text-align: center; max-width: 10%;">PROSES</th>
-                                <th style="text-align: center; max-width: 10%;">PENDING</th>
-                                <th style="text-align: center; max-width: 10%;">DITOLAK</th>
-                                <th style="text-align: center; max-width: 10%;">SELESAI</th>
-                                <th style="text-align: center; max-width: 10%;">TOTAL</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              <?php $total_proses=0;$total_pending=0;$total_tolak=0;$total_selesai=0; $a=1; foreach ($hasilnya as $row): ?>
-                              <tr>
-                                  <td><?php echo $a; ?></td>
-                                  <td><?php echo $row->NAMA_IJIN;
+                      <table id="coba-table" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
+                        <thead>
+                          <tr>
+                            <th style="max-width: 10%;">No</th>
+                            <th style="text-align: center; max-width: 10%;">NAMA PERIZINAN/NON PERIZINAN</th>
+                            <th style="text-align: center; max-width: 10%;">PROSES</th>
+                            <th style="text-align: center; max-width: 10%;">PENDING</th>
+                            <th style="text-align: center; max-width: 10%;">DITOLAK</th>
+                            <th style="text-align: center; max-width: 10%;">SELESAI</th>
+                            <th style="text-align: center; max-width: 10%;">TOTAL</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <?php $total_proses=0;$total_pending=0;$total_tolak=0;$total_selesai=0; $a=1; foreach ($hasilnya as $row): ?>
+                            <tr>
+                              <td><?php echo $a; ?></td>
+                              <td><?php echo $row->NAMA_IJIN;
                                   $jumlah_total = $row->JUMLAHNYA;
                                   $kode_ijinnya = $row->ID;
                                   $nama_ijinnya = $row->NAMA_IJIN;
-                                  ?></td>
-                                  <td style="text-align: right;"><?php 
-                                  $prosesnya = $this->mlaporan->get_proses($tgl_mulai,$tgl_akhir,$judulnya,$row->ID);
-                                    if (!$prosesnya) {?>
-                                      <a type="button" data-title='button' class="btn btn-default pull-right" disabled> 0 </a>
-                                    <?php
+                              ?></td>
+                              <td style="text-align: right;"><?php 
+                                $prosesnya = $this->mlaporan->get_proses($tgl_mulai,$tgl_akhir,$judulnya,$row->ID);
+                                  if (!$prosesnya) {?>
+                                    <a type="button" data-title='button' class="btn btn-default pull-right" disabled> 0 </a>
+                                  <?php
+                                  }
+                                  else { 
+                                    foreach ($prosesnya as $row){
+                                      ?>
+                                      <a type="button" data-title='button' class="btn btn-primary pull-right" href="<?php echo base_url();?>admin/proses_detail/<?php echo $tgl_mulai;?>/<?php echo $tgl_akhir;?>/<?php $string = str_replace(' ', '_', $nama_ijinnya); echo str_replace('/', '.', $string);?>/<?php echo $kode_ijinnya;?>" target="_blank"> <?php echo $row->PROSESNYA;?> </a>
+                                      <?php
+                                      $total_proses = $total_proses + $row->PROSESNYA;
                                     }
-                                    else { 
-                                      foreach ($prosesnya as $row){
-                                        ?>
-                                        <a type="button" data-title='button' class="btn btn-primary pull-right" href="<?php echo base_url();?>admin/proses_detail/<?php echo $tgl_mulai;?>/<?php echo $tgl_akhir;?>/<?php $string = str_replace(' ', '_', $nama_ijinnya); echo str_replace('/', '.', $string);?>/<?php echo $kode_ijinnya;?>" target="_blank"> <?php echo $row->PROSESNYA;?> </a>
-                                        <?php
-                                        $total_proses = $total_proses + $row->PROSESNYA;
-                                      }
-                                    }
-                                  ?>
-                                  </td>
+                                  }
+                                ?>
+                              </td>
                                   <td style="text-align: right;"><?php 
                                   $pendingnya = $this->mlaporan->get_pending($tgl_mulai,$tgl_akhir,$judulnya,$row->ID);
                                     if (!$pendingnya) {?>

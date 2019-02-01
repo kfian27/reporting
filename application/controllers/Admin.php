@@ -152,6 +152,14 @@ class admin extends CI_Controller {
 		$this->load->view('laporan/selesai_detail.php',$data);
 		$this->load->view('baseadmin/footer.php');
 	}
+	public function histori_detail($parameternya){
+		$this->load->model('mlaporan');
+		$data['hasilnya'] = $this->mlaporan->get_histori_details($parameternya);
+		// $data['jumlah_total'] = $jumlah_total;
+		$this->load->view('baseadmin/header.php');
+		$this->load->view('laporan/historical.php',$data);
+		$this->load->view('baseadmin/footer.php');
+	}
 	public function login(){
 		if ($this->session->userdata('name')==null){
 			$this->load->view('baseadmin/login.php');

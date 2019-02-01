@@ -12,7 +12,7 @@
                   <div class="x_content">
                     <br>
                     <div class="table-responsive">
-                          <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap">
+                          <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
                             <thead>
                               <tr>
                                 <th style="max-width: 10%;">No</th>
@@ -31,7 +31,8 @@
                               <?php $a=1; foreach ($hasilnya as $row): ?>
                               <tr>
                                 <td><?php echo $a; ?></td>
-                                <td><?php echo $row->NO_OL;?></td>
+                                <td>
+                                  <a type="button" data-title='button' class="btn btn-primary pull-right" href="<?php echo base_url();?>admin/histori_detail/<?php echo $row->NO_OL;?>" target="_blank"> <?php echo $row->NO_OL;?> </a></td>
                                 <td><?php echo date('d F Y', strtotime($row->TGL_OL));?></td>
                                 <td><?php echo $row->NAMAPEMOHON;?></td>
                                 <td><?php echo $row->NAMA_ALUR_PROSES;?></td>
