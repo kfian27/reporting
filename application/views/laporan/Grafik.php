@@ -62,6 +62,7 @@
           if(!$grafiknya){
             $labelnya = array("January", "February", "March", "April", "May","June","July","August","September","October","November","December");
             $datanya = array("0","0","0","0","0","0","0","0","0","0","0","0");
+            $jumlah_data = count($labelnya);
           }
           else{
             foreach($grafiknya as $row){
@@ -70,33 +71,66 @@
             }
           }
           if(!$grafiknya1){
-            $labelnya1 = array("January", "February", "March", "April", "May","June","July","August","September","October","November","December");
-            $datanya1 = array("0","0","0","0","0","0","0","0","0","0","0","0");
+            // $labelnya1 = array("January", "February", "March", "April", "May","June","July","August","September","October","November","December"); 
+            $jumlah_data = count($labelnya);
+            for ($i=0; $i <$jumlah_data ; $i++) { 
+              $datanya1[] = "0";
+            }
           }
           else{
             foreach($grafiknya1 as $row){
-              $labelnya1[] = $row->BULAN;
+              // $labelnya1[] = $row->BULAN;
               $datanya1[] = (float) $row->TOTAL;
+            }
+            $jumlah_data = count($labelnya);
+            $jumlah_data_ini = count($datanya1);
+            if ($jumlah_data_ini != $jumlah_data)  {
+              $hitungan = $jumlah_data - $jumlah_data_ini;
+              for ($i=0; $i < $hitungan; $i++) { 
+                $datanya1[] = "0";
+              }
             }
           }
           if(!$grafiknya2){
-            $labelnya2 = array("January", "February", "March", "April", "May","June","July","August","September","October","November","December");
-            $datanya2 = array("0","0","0","0","0","0","0","0","0","0","0","0");
+            // $labelnya2 = array("January", "February", "March", "April", "May","June","July","August","September","October","November","December");
+            $jumlah_data = count($labelnya);
+            for ($i=0; $i <$jumlah_data ; $i++) { 
+              $datanya2[] = "0";
+            }
           }
           else{
             foreach($grafiknya2 as $row){
-              $labelnya2[] = $row->BULAN;
+              // $labelnya2[] = $row->BULAN;
               $datanya2[] = (float) $row->TOTAL;
+            }
+            $jumlah_data = count($labelnya);
+            $jumlah_data_ini = count($datanya2);
+            if ($jumlah_data_ini != $jumlah_data) {
+              $hitungan = $jumlah_data - $jumlah_data_ini;
+              for ($i=0; $i < $hitungan ; $i++) { 
+                $datanya2[] = "0";
+              }
             }
           }
           if(!$grafiknya3){
-            $labelnya3 = array("January", "February", "March", "April", "May","June","July","August","September","October","November","December");
-            $datanya3 = array("0","0","0","0","0","0","0","0","0","0","0","0");
+            // $labelnya3 = array("January", "February", "March", "April", "May","June","July","August","September","October","November","December");
+            $jumlah_data = count($labelnya);
+            for ($i=0; $i <$jumlah_data ; $i++) { 
+              $datanya3[] = "0";
+            }
           }
           else{
             foreach($grafiknya3 as $row){
-              $labelnya3[] = $row->BULAN;
+              // $labelnya3[] = $row->BULAN;
               $datanya3[] = (float) $row->TOTAL;
+            }
+            $jumlah_data = count($labelnya);
+            $jumlah_data_ini = count($datanya3);
+            if ($jumlah_data_ini != $jumlah_data) {
+              $hitungan = $jumlah_data - $jumlah_data_ini;
+              for ($i=0; $i < $hitungan ; $i++) { 
+                $datanya3[] = "0";
+              }
             }
           }
         ?>
@@ -121,8 +155,8 @@
             data: {
               labels: <?php echo json_encode($labelnya);?>,
               datasets: [{
-                label: 'Pending',
-                backgroundColor: "#ff9933",
+                label: 'Selesai',
+                backgroundColor: "#00e600",
                 data: <?php echo json_encode($datanya);?>
                 },{
                 label: 'Proses',
@@ -135,8 +169,8 @@
                 data: <?php echo json_encode($datanya2);?>
                 },
                 {
-                label: 'Selesai',
-                backgroundColor: "#00e600",
+                label: 'Pending',
+                backgroundColor: "#ff9933",
                 data: <?php echo json_encode($datanya3);?>
                 }
               ]

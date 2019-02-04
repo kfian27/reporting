@@ -50,10 +50,10 @@ class admin extends CI_Controller {
 		$this->load->model('mlaporan');
 		$data['nama_skpd'] = $this->mlaporan->get_nm_skpd();
 		$data['tanggal'] = $this->mlaporan->get_tgl_masuk();
-		$data['grafiknya'] = $this->mlaporan->get_dashboard_pending($this->input->post('tahun_masuk'),$this->input->post('uptd'),$this->input->post('ijinnya'));
+		$data['grafiknya3'] = $this->mlaporan->get_dashboard_pending($this->input->post('tahun_masuk'),$this->input->post('uptd'),$this->input->post('ijinnya'));
 		$data['grafiknya1'] = $this->mlaporan->get_dashboard_proses($this->input->post('tahun_masuk'),$this->input->post('uptd'),$this->input->post('ijinnya'));
 		$data['grafiknya2'] = $this->mlaporan->get_dashboard_tolak($this->input->post('tahun_masuk'),$this->input->post('uptd'),$this->input->post('ijinnya'));
-		$data['grafiknya3'] = $this->mlaporan->get_dashboard_selesai($this->input->post('tahun_masuk'),$this->input->post('uptd'),$this->input->post('ijinnya'));
+		$data['grafiknya'] = $this->mlaporan->get_dashboard_selesai($this->input->post('tahun_masuk'),$this->input->post('uptd'),$this->input->post('ijinnya'));
 		$data['tahunnya'] = $this->input->post('tahun_masuk');
 		$data['judul_grafik'] = $this->input->post('ijinnya');
 		$this->load->view('baseadmin/header.php');
