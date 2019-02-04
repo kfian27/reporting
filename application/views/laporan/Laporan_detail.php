@@ -1,3 +1,43 @@
+<style>
+.classnya {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black;
+}
+
+.classnya .tooltiptext {
+  visibility: hidden;
+  width: 200px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 1;
+  top: 20px;
+  right: 70%; 
+  margin-left: -60px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.classnya .tooltiptext::after {
+  content: " ";
+  position: absolute;
+  top: 50%;
+  left: 100%; /* To the right of the tooltip */
+  margin-top: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent transparent transparent black;
+}
+
+.classnya:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+}
+</style>
 <?php  $this->load->model('mlaporan'); $tanggal = date('Y-m-d', strtotime($tgl_mulai)); $tanggal1 = date('Y-m-d', strtotime($tgl_akhir));?>
       <div class="right_col" role="main" id="view">
         <div class="">
@@ -7,11 +47,18 @@
                 <div class="x_panel">
                   <div class="x_title">
                     <div class="col-md-8 col-sm-12 col-xs-12">
-                      <h1><?php echo $judulnya; ?></h1>
+                      <h1><?php echo $judulnya; ?>
+                      </h1>
                       <h4><?php echo "Periode Berkas Masuk ".$this->mlaporan->tanggal_indo($tanggal)." Sampai ".$this->mlaporan->tanggal_indo($tanggal1)." Dengan Total Berkas Masuk ".$jumlah_total;?></h4>
                     </div>
-                    <div class="col-md-4 col-sm-12 col-xs-12"> <!-- Date input -->
+                    <div class="col-md-4 col-sm-12 col-xs-12 classnya"><!-- Date input -->
                       <canvas id="pie1" height="150px"></canvas>
+                      <span class="tooltiptext">
+                        Proses Dinas <br>
+                        <?php foreach ($hasilnya1 as $row) {
+                          echo $row->NAMA_ALUR_PROSES_DINAS." : ".$row->JUMLAH."<br>";
+                        }?>
+                      </span>
                     </div>
                     <div class="clearfix"></div>
                   </div>

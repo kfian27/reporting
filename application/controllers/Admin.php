@@ -78,6 +78,7 @@ class admin extends CI_Controller {
 		$parameternya1 = str_replace('_', ' ', $parameternya);
 		$parameternya1 = str_replace('.', '/', $parameternya1);
 		$data['hasilnya'] = $this->mlaporan->get_details_tanggal($tgl_mulai,$tgl_akhir,$parameternya1);
+		$data['hasilnya1'] = $this->mlaporan->get_pie_proses($tgl_mulai,$tgl_akhir,$parameternya1);
 		$data['judulnya'] = $parameternya1;
 		$data['tgl_mulai'] = $tgl_mulai;
 		$data['tgl_akhir'] = $tgl_akhir;
