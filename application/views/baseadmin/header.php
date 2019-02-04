@@ -57,23 +57,13 @@
               <div class="menu_section">
                 <h3>General</h3>
                 <ul class="nav side-menu">
-                  <!-- <li><a href="<?php echo base_url();?>admin/"><i class="fa fa-home"></i> Home </a></li> -->
                   <li><a href="<?php echo base_url();?>admin/home"><i class="fa fa-home"></i> Home </a></li>
-                  <!-- <li><a href="<?php echo base_url();?>admin/agenda"><i class="fa fa-calendar"></i> Agenda </a></li> -->
-                  <!-- <li><a href="<?php echo base_url();?>admin/vimi"><i class="fa fa-book"></i> Visi Misi </a></li> -->
                 </ul>
               </div>
               <div class="menu_section">
                 <h3>Laporan</h3>
                 <ul class="nav side-menu">
-                   <li><a><i class="fa fa-files-o"></i> Laporan <span class="fa fa-chevron-down"></a>
-                    <ul class="nav child_menu">
-                      <li><a href="<?php echo base_url(); ?>admin/hasil1"> 1 </a></li>
-                      <li><a href="<?php echo base_url(); ?>admin/kedua"> 2 </a></li>
-                      <li><a href="<?php echo base_url(); ?>admin/ketiga"> 3 </a></li>
-                      <li><a href="<?php echo base_url(); ?>admin/keempat"> 4 </a></li>
-                    </ul>
-                  </li>
+                  <li><a href="<?php echo base_url(); ?>admin/laporan"><i class="fa fa-file-o"></i> Laporan </a></li>
                 </ul>
               </div>
             </div>

@@ -15,7 +15,7 @@
                           <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
                             <thead>
                               <tr>
-                                <th style="max-width: 10%;">No</th>
+                                <!-- <th style="max-width: 10%;">No</th> -->
                                 <!-- <th style="text-align: center; max-width: 25%;">NO PENDAFTARAN</th> -->
                                 <!-- <th style="text-align: center; max-width: 25%;">TANGGAL PENDAFTARAN</th> -->
                                 <th style="text-align: center; max-width: 10%;">NAMA PETUGAS</th>
@@ -28,7 +28,7 @@
                               <?php $a=1; foreach ($hasilnya as $row): ?>
                               <tr>
                                 <!-- <td></td> -->
-                                <td><?php echo $a;?></td>
+                                <!-- <td><?php echo $a;?></td> -->
                                 <td><?php echo $row->NAMA;?></td>
                                 <td><?php
                                   $tanggal = date('Y-m-d', strtotime($row->TGL_PROSES));

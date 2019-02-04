@@ -41,7 +41,7 @@ class admin extends CI_Controller {
 		$data['tanggal'] = $this->mlaporan->get_tgl_masuk();
 		// $data['grafiknya'] = $this->mlaporan->get_dashboard($this->input->post('tahun_masuk'),$this->input->post('uptd'),$this->input->post('ijinnya'));
 		$this->load->view('baseadmin/header.php');
-		$this->load->view('laporan/utama.php',$data);
+		$this->load->view('laporan/dashboard.php',$data);
 		$this->load->view('baseadmin/footer.php');
 	}
 	public function grafik()
@@ -60,18 +60,7 @@ class admin extends CI_Controller {
 		$this->load->view('laporan/grafik.php',$data);
 		$this->load->view('baseadmin/footer.php');
 	}
-	public function pertama() {
-		// $tanggal = date('Y-m');
-		$this->load->model('mlaporan');
-		$data['nama_skpd'] = $this->mlaporan->get_nm_skpd();
-		// $data['order'] = $this->mlaporan->get_order_type();
-		// $data['retailer1'] = $this->mlaporan->get_retailer_type();
-		// $data['product'] = $this->mlaporan->get_product_line();
-		$this->load->view('baseadmin/header.php');
-		$this->load->view('laporan/pertama.php',$data);
-		$this->load->view('baseadmin/footer.php');
-	}
-	public function hasil1() {
+	public function laporan() {
 		// $tanggal = date('Y-m');
 		$this->load->model('mlaporan');
 		$data['nama_skpd'] = $this->mlaporan->get_nm_skpd();
@@ -80,30 +69,10 @@ class admin extends CI_Controller {
 		$data['tgl_akhir'] = $this->input->post('tgl_akhir');
 		$data['dinas'] = $this->input->post('uptd'); 
 		$this->load->view('baseadmin/header.php');
-		$this->load->view('laporan/kelima.php',$data);
+		$this->load->view('laporan/laporan.php',$data);
 		$this->load->view('baseadmin/footer.php');
 	}
-	public function kedua() {
-		$tanggal = date('Y-m');
-		// $data['retailer'] = $this->mlaporan->get_retailer();
-		// $data['order'] = $this->mlaporan->get_order_type();
-		// $data['retailer1'] = $this->mlaporan->get_retailer_type();
-		// $data['product'] = $this->mlaporan->get_product_line();
-		$this->load->view('baseadmin/header.php');
-		$this->load->view('laporan/kedua.php');
-		$this->load->view('baseadmin/footer.php');
-	}
-	public function ketiga() {
-		$tanggal = date('Y-m');
-		// $data['retailer'] = $this->mlaporan->get_retailer();
-		// $data['order'] = $this->mlaporan->get_order_type();
-		// $data['retailer1'] = $this->mlaporan->get_retailer_type();
-		// $data['product'] = $this->mlaporan->get_product_line();
-		$this->load->view('baseadmin/header.php');
-		$this->load->view('laporan/ketiga.php');
-		$this->load->view('baseadmin/footer.php');
-	}
-	public function keempat($tgl_mulai,$tgl_akhir,$parameternya,$jumlah_total) {
+	public function laporan_detail($tgl_mulai,$tgl_akhir,$parameternya,$jumlah_total) {
 		//$tanggal = date('Y-m');
 		$this->load->model('mlaporan');
 		$parameternya1 = str_replace('_', ' ', $parameternya);
@@ -114,7 +83,7 @@ class admin extends CI_Controller {
 		$data['tgl_akhir'] = $tgl_akhir;
 		$data['jumlah_total'] = $jumlah_total;
 		$this->load->view('baseadmin/header.php');
-		$this->load->view('laporan/keempat.php',$data);
+		$this->load->view('laporan/laporan_detail.php',$data);
 		$this->load->view('baseadmin/footer.php');
 	}
 	public function proses_detail($tgl_mulai,$tgl_akhir,$parameternya,$kd_ijin){

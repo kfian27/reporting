@@ -10,7 +10,7 @@
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
-                   <form class="form-horizontal" method="post" action="<?php echo base_url(); ?>admin/hasil1">
+                   <form class="form-horizontal" method="post" action="<?php echo base_url(); ?>admin/laporan">
                       <div class="col-md-12 col-sm-12 col-xs-12 form-group"> <!-- Date input -->
                         <label for="tiga" class="col-sm-2 control-label"> Periode Berkas Masuk </label>
                         <div class="col-md-3 col-sm-10 col-xs-10">
@@ -61,7 +61,7 @@
                                   <td><?php echo $row->NM_HEADER;?></td>
                                   <td><?php echo $row->JUMLAHNYA; $a++;?></td>
                                   <td>
-                                    <a type="button" data-title='Edit' class="btn btn-primary pull-right" href="<?php echo base_url();?>admin/keempat/<?php echo $tgl_mulai;?>/<?php echo $tgl_akhir;?>/<?php $string = str_replace(' ', '_', $row->NM_HEADER); echo str_replace('/', '.', $string);?>/<?php echo $row->JUMLAHNYA;?>"  target="_blank"> View Details </a>
+                                    <a type="button" data-title='Edit' class="btn btn-primary pull-right" href="<?php echo base_url();?>admin/laporan_detail/<?php echo $tgl_mulai;?>/<?php echo $tgl_akhir;?>/<?php $string = str_replace(' ', '_', $row->NM_HEADER); echo str_replace('/', '.', $string);?>/<?php echo $row->JUMLAHNYA;?>"  target="_blank"> View Details </a>
                                   </td>
                               </tr>
                               <?php endforeach; ?>

@@ -27,7 +27,7 @@
                             <th style="text-align: center; max-width: 10%;">PENDING</th>
                             <th style="text-align: center; max-width: 10%;">DITOLAK</th>
                             <th style="text-align: center; max-width: 10%;">SELESAI</th>
-                            <th style="text-align: center; max-width: 10%;">TOTAL</th>
+                            <th style="text-align: center; max-width: 10%;">TOTAL BERKAS</th>
                           </tr>
                         </thead>
                         <tbody>
