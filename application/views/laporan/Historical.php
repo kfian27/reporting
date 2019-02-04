@@ -1,3 +1,4 @@
+  <?php  $this->load->model('mlaporan'); ?>
       <div class="right_col" role="main" id="view">
         <div class="">
           <div class="row">
@@ -5,7 +6,7 @@
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h1>HISTORIKAL</h1>
+                    <h1>Historikal No OL : <?php echo $nomer_ol;?></h1>
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
@@ -29,7 +30,10 @@
                                 <!-- <td></td> -->
                                 <td><?php echo $a;?></td>
                                 <td><?php echo $row->NAMA;?></td>
-                                <td><?php echo date('d F Y', strtotime($row->TGL_PROSES));?></td>
+                                <td><?php
+                                  $tanggal = date('Y-m-d', strtotime($row->TGL_PROSES));
+                                  echo $this->mlaporan->tanggal_indo($tanggal);?>
+                                </td>
                                 <td><?php echo $row->NAMA_ALUR_PROSES;?></td>
                                 <td><?php echo $row->KETERANGAN; $a++;?></td>
                               </tr>

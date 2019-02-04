@@ -13,20 +13,20 @@ class Laporan extends CI_Controller
       	$this->load->library('Pdf');
 	}
 
-	public function getOrderList() {    
-        $tglMulai = $this->input->post('tgl_mulai');
-        $tglAkhir = $this->input->post('tgl_akhir')
-        $uptd = $this->input->post('uptd')       
-        $hasilnya] = $this->mlaporan->get_tanggal($tglMulai,$tglAkhir,$uptd);        
-        $dataArray = array();
-        foreach ($hasilnya as $element) {            
-            $dataArray[] = array(
-                $element['nm_header'],
-                $element['jumlah_berkas'],
-            );
-        }
-        echo json_encode(array("data" => $dataArray));
-    }
+	function getByDeviceId(){
+
+	    $uptd = $this->input->post("uptdnya");
+
+	    $datanya = $this->mlaporan->get_nm_ijin($uptd);
+	    $keterangan = "<option value=''>--pilih--</option>";
+
+	    foreach ($datanya as $key) {
+	    	$keterangan .= "<option value='".$key->NAMA_HEADER."'>".$key->NAMA_HEADER."</option>";
+	    }
+
+	    $callback = array('list_ijin'=>$keterangan);
+	    echo(json_encode($callback));
+	}	
 
 	function pdf_bulan()
 	{

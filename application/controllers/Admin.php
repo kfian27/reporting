@@ -37,10 +37,27 @@ class admin extends CI_Controller {
 	{
 		// $this->cek_login();
 		$this->load->model('mlaporan');
-		// $data['grafik1'] = $this->mlaporan->get_grafik1();
-		// $data['grafik2'] = $this->mlaporan->get_grafik2();
+		$data['nama_skpd'] = $this->mlaporan->get_nm_skpd();
+		$data['tanggal'] = $this->mlaporan->get_tgl_masuk();
+		// $data['grafiknya'] = $this->mlaporan->get_dashboard($this->input->post('tahun_masuk'),$this->input->post('uptd'),$this->input->post('ijinnya'));
 		$this->load->view('baseadmin/header.php');
-		$this->load->view('laporan/utama.php');
+		$this->load->view('laporan/utama.php',$data);
+		$this->load->view('baseadmin/footer.php');
+	}
+	public function grafik()
+	{
+		// $this->cek_login();
+		$this->load->model('mlaporan');
+		$data['nama_skpd'] = $this->mlaporan->get_nm_skpd();
+		$data['tanggal'] = $this->mlaporan->get_tgl_masuk();
+		$data['grafiknya'] = $this->mlaporan->get_dashboard_pending($this->input->post('tahun_masuk'),$this->input->post('uptd'),$this->input->post('ijinnya'));
+		$data['grafiknya1'] = $this->mlaporan->get_dashboard_proses($this->input->post('tahun_masuk'),$this->input->post('uptd'),$this->input->post('ijinnya'));
+		$data['grafiknya2'] = $this->mlaporan->get_dashboard_tolak($this->input->post('tahun_masuk'),$this->input->post('uptd'),$this->input->post('ijinnya'));
+		$data['grafiknya3'] = $this->mlaporan->get_dashboard_selesai($this->input->post('tahun_masuk'),$this->input->post('uptd'),$this->input->post('ijinnya'));
+		$data['tahunnya'] = $this->input->post('tahun_masuk');
+		$data['judul_grafik'] = $this->input->post('ijinnya');
+		$this->load->view('baseadmin/header.php');
+		$this->load->view('laporan/grafik.php',$data);
 		$this->load->view('baseadmin/footer.php');
 	}
 	public function pertama() {
@@ -155,7 +172,7 @@ class admin extends CI_Controller {
 	public function histori_detail($parameternya){
 		$this->load->model('mlaporan');
 		$data['hasilnya'] = $this->mlaporan->get_histori_details($parameternya);
-		// $data['jumlah_total'] = $jumlah_total;
+		$data['nomer_ol'] = $parameternya;
 		$this->load->view('baseadmin/header.php');
 		$this->load->view('laporan/historical.php',$data);
 		$this->load->view('baseadmin/footer.php');

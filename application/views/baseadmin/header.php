@@ -68,7 +68,7 @@
                 <ul class="nav side-menu">
                    <li><a><i class="fa fa-files-o"></i> Laporan <span class="fa fa-chevron-down"></a>
                     <ul class="nav child_menu">
-                      <li><a href="<?php echo base_url(); ?>admin/pertama"> 1 </a></li>
+                      <li><a href="<?php echo base_url(); ?>admin/hasil1"> 1 </a></li>
                       <li><a href="<?php echo base_url(); ?>admin/kedua"> 2 </a></li>
                       <li><a href="<?php echo base_url(); ?>admin/ketiga"> 3 </a></li>
                       <li><a href="<?php echo base_url(); ?>admin/keempat"> 4 </a></li>

@@ -1,4 +1,4 @@
-  <?php  $this->load->model('mlaporan'); ?>
+<?php  $this->load->model('mlaporan'); $tanggal = date('Y-m-d', strtotime($tgl_mulai)); $tanggal1 = date('Y-m-d', strtotime($tgl_akhir));?>
       <div class="right_col" role="main" id="view">
         <div class="">
           <div class="row">
@@ -8,7 +8,7 @@
                   <div class="x_title">
                     <div class="col-md-8 col-sm-12 col-xs-12">
                       <h1><?php echo $judulnya; ?></h1>
-                      <h4><?php echo "Periode Berkas Masuk ".date('d F Y', strtotime($tgl_mulai))." Sampai ".date('d F Y', strtotime($tgl_akhir))." Dengan Total Berkas Masuk ".$jumlah_total;?></h4>
+                      <h4><?php echo "Periode Berkas Masuk ".$this->mlaporan->tanggal_indo($tanggal)." Sampai ".$this->mlaporan->tanggal_indo($tanggal1)." Dengan Total Berkas Masuk ".$jumlah_total;?></h4>
                     </div>
                     <div class="col-md-4 col-sm-12 col-xs-12"> <!-- Date input -->
                       <canvas id="pie1" height="150px"></canvas>

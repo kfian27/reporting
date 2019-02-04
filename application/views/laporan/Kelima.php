@@ -1,9 +1,3 @@
-       <script type="text/javascript">
-            let mulainya = new Date().toISOString().substr(0, 10);
-            let akhirnya = <?php echo $tgl_akhir;?>.format('DD/MM/YYYY');
-            document.querySelector("#tgl_mulai").value = mulainya;
-            document.querySelector("#tgl_akhir").value = akhirnya;
-        </script>
       <div class="right_col" role="main" id="view">
         <div class="">
           <div class="row">
@@ -12,7 +6,7 @@
                 <div class="x_panel">
                   <div class="x_title">
                     <h1>Report Perizinan/Non-Perizinan SSW</h1>
-                    <h5><?php echo "Periode Berkas Masuk ".date('d F Y', strtotime($tgl_mulai))." Sampai ".date('d F Y', strtotime($tgl_akhir));?></h5>
+                    <!-- <h5><?php echo "Periode Berkas Masuk ".date('d F Y', strtotime($tgl_mulai))." Sampai ".date('d F Y', strtotime($tgl_akhir));?></h5> -->
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
@@ -20,14 +14,14 @@
                       <div class="col-md-12 col-sm-12 col-xs-12 form-group"> <!-- Date input -->
                         <label for="tiga" class="col-sm-2 control-label"> Periode Berkas Masuk </label>
                         <div class="col-md-3 col-sm-10 col-xs-10">
-                          <input type="Date" name="tgl_mulai" id="tgl_mulai" class="form-control" value="<?php echo $tgl_mulai;?>" required="required">
+                          <input type="Date" name="tgl_mulai" id="tgl_mulai" class="form-control" required="required">
                         </div>
                         <div style="float: left; margin-right: 10px; margin-top: 2px; font-size: 20px;">
                           <i class="fa fa-calendar"></i>
                         </div>
                         <label class="col-sm-1 control-label" style="text-align: left;"> Sampai </label>
                         <div class="col-md-3 col-sm-10 col-xs-10">
-                          <input type="Date" name="tgl_akhir" id="tgl_akhir" class="form-control" value="<?php echo $tgl_akhir;?>" required="required">
+                          <input type="Date" name="tgl_akhir" id="tgl_akhir" class="form-control" required="required">
                         </div>
                         <div style="float: left; margin-right: 10px; margin-top: 2px; font-size: 20px;">
                           <i class="fa fa-calendar"></i>
@@ -83,6 +77,8 @@
         <script type="text/javascript">
           $(document).ready(function() {
              $('#uptd').val('<?php echo $dinas;?>');
+             $('#tgl_mulai').val('<?php echo $tgl_mulai;?>');
+             $('#tgl_akhir').val('<?php echo $tgl_akhir;?>');
              $("#coba-table").DataTable({
               dom: "Blfrtip",
               buttons: [

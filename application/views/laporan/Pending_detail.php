@@ -1,3 +1,4 @@
+<?php  $this->load->model('mlaporan'); $tanggal = date('Y-m-d', strtotime($tgl_mulai)); $tanggal1 = date('Y-m-d', strtotime($tgl_akhir));?>
       <div class="right_col" role="main" id="view">
         <div class="">
           <div class="row">
@@ -6,7 +7,7 @@
                 <div class="x_panel">
                   <div class="x_title">
                     <h1><?php echo $judulnya; ?> (PENDING)</h1>
-                    <h4><?php echo "Periode Berkas Masuk ".date('d F Y', strtotime($tgl_mulai))." Sampai ".date('d F Y', strtotime($tgl_akhir));?></h4>
+                    <h4><?php echo "Periode Berkas Masuk ".$this->mlaporan->tanggal_indo($tanggal)." Sampai ".$this->mlaporan->tanggal_indo($tanggal1);?></h4>
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
@@ -31,8 +32,13 @@
                               <?php $a=1; foreach ($hasilnya as $row): ?>
                               <tr>
                                 <td><?php echo $a; ?></td>
-                                <td><?php echo $row->NO_OL;?></td>
-                                <td><?php echo date('d F Y', strtotime($row->TGL_OL));?></td>
+                                <td>
+                                  <a type="button" data-title='button' class="btn btn-primary pull-right" href="<?php echo base_url();?>admin/histori_detail/<?php echo $row->NO_OL;?>" target="_blank"> <?php echo $row->NO_OL;?> </a>
+                                </td>
+                                <td><?php
+                                  $tanggal = date('Y-m-d', strtotime($row->TGL_OL));
+                                  echo $this->mlaporan->tanggal_indo($tanggal);?>
+                                </td>
                                 <td><?php echo $row->NAMAPEMOHON;?></td>
                                 <td><?php echo $row->NAMA_ALUR_PROSES;?></td>
                                 <td><?php echo $row->ALAMATPEMOHON;?></td>
