@@ -50,17 +50,14 @@ class admin extends CI_Controller {
 		$this->load->model('mlaporan');
 		$data['nama_skpd'] = $this->mlaporan->get_nm_skpd();
 		$data['tanggal'] = $this->mlaporan->get_tgl_masuk();
-		$data['grafiknya3'] = $this->mlaporan->get_dashboard_pending($this->input->post('tahun_masuk'),$this->input->post('uptd'),$this->input->post('ijinnya'));
-		$data['grafiknya1'] = $this->mlaporan->get_dashboard_proses($this->input->post('tahun_masuk'),$this->input->post('uptd'),$this->input->post('ijinnya'));
-		$data['grafiknya2'] = $this->mlaporan->get_dashboard_tolak($this->input->post('tahun_masuk'),$this->input->post('uptd'),$this->input->post('ijinnya'));
-		$data['grafiknya'] = $this->mlaporan->get_dashboard_selesai($this->input->post('tahun_masuk'),$this->input->post('uptd'),$this->input->post('ijinnya'));
 		$data['tahunnya'] = $this->input->post('tahun_masuk');
 		$data['judul_grafik'] = $this->input->post('ijinnya');
+		$data['skpdnya'] = $this->input->post('uptd');
 		$this->load->view('baseadmin/header.php');
 		$this->load->view('laporan/grafik.php',$data);
 		$this->load->view('baseadmin/footer.php');
 	}
-	public function laporan() {
+	public function laporan_mandiri() {
 		// $tanggal = date('Y-m');
 		$this->load->model('mlaporan');
 		$data['nama_skpd'] = $this->mlaporan->get_nm_skpd();
@@ -72,7 +69,7 @@ class admin extends CI_Controller {
 		$this->load->view('laporan/laporan.php',$data);
 		$this->load->view('baseadmin/footer.php');
 	}
-	public function laporan_detail($tgl_mulai,$tgl_akhir,$parameternya,$jumlah_total) {
+	public function laporan_mandiri_detail($tgl_mulai,$tgl_akhir,$parameternya,$jumlah_total) {
 		//$tanggal = date('Y-m');
 		$this->load->model('mlaporan');
 		$parameternya1 = str_replace('_', ' ', $parameternya);
@@ -145,6 +142,18 @@ class admin extends CI_Controller {
 		$data['nomer_ol'] = $parameternya;
 		$this->load->view('baseadmin/header.php');
 		$this->load->view('laporan/historical.php',$data);
+		$this->load->view('baseadmin/footer.php');
+	}
+	public function laporan_paket() {
+		// $tanggal = date('Y-m');
+		$this->load->model('mlaporan_paket');
+		$data['nama_paket'] = $this->mlaporan_paket->get_nm_paket();
+		$data['hasilnya'] = $this->mlaporan_paket->get_tanggal($this->input->post('tgl_mulai'),$this->input->post('tgl_akhir'),$this->input->post('paket'));
+		$data['tgl_mulai'] = $this->input->post('tgl_mulai');
+		$data['tgl_akhir'] = $this->input->post('tgl_akhir');
+		$data['paketnya'] = $this->input->post('paket'); 
+		$this->load->view('baseadmin/header.php');
+		$this->load->view('laporan/laporan_paket.php',$data);
 		$this->load->view('baseadmin/footer.php');
 	}
 	public function login(){

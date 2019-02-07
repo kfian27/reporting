@@ -1,3 +1,4 @@
+      <?php $this->load->model('mlaporan'); ?>
       <div class="right_col" role="main" id="view">
         <div class="">
           <div class="row">
@@ -59,80 +60,45 @@
           </div>
         </div>
         <?php
-          if(!$grafiknya){
-            $labelnya = array("January", "February", "March", "April", "May","June","July","August","September","October","November","December");
-            $datanya = array("0","0","0","0","0","0","0","0","0","0","0","0");
-            $jumlah_data = count($labelnya);
-          }
-          else{
-            foreach($grafiknya as $row){
-              $labelnya[] = $row->BULAN;
-              $datanya[] = (float) $row->TOTAL;
-            }
-          }
-          if(!$grafiknya1){
-            // $labelnya1 = array("January", "February", "March", "April", "May","June","July","August","September","October","November","December"); 
-            $jumlah_data = count($labelnya);
-            for ($i=0; $i <$jumlah_data ; $i++) { 
-              $datanya1[] = "0";
-            }
-          }
-          else{
-            foreach($grafiknya1 as $row){
-              // $labelnya1[] = $row->BULAN;
-              $datanya1[] = (float) $row->TOTAL;
-            }
-            $jumlah_data = count($labelnya);
-            $jumlah_data_ini = count($datanya1);
-            if ($jumlah_data_ini != $jumlah_data)  {
-              $hitungan = $jumlah_data - $jumlah_data_ini;
-              for ($i=0; $i < $hitungan; $i++) { 
-                $datanya1[] = "0";
+            $labelnya = array("Januari", "Februari", "Maret", "April", "Mei","Juni","Juli","Agustus","September","Oktober","November","Desember");
+            for ($b=1; $b < 13 ; $b++) { 
+              $dash_pending = $this->mlaporan->get_dashboard_pending($tahunnya,$skpdnya,$judul_grafik,$b);
+              $dash_proses = $this->mlaporan->get_dashboard_proses($tahunnya,$skpdnya,$judul_grafik,$b);
+              $dash_tolak = $this->mlaporan->get_dashboard_tolak($tahunnya,$skpdnya,$judul_grafik,$b);
+              $dash_selesai = $this->mlaporan->get_dashboard_selesai($tahunnya,$skpdnya,$judul_grafik,$b);
+              if (!$dash_selesai) {
+                $datanya[] = 0;
+              }
+              else{
+                foreach ($dash_selesai as $row) {
+                  $datanya[] = (float) $row->TOTAL;
+                }
+              }
+              if (!$dash_proses) {
+                $datanya1[] = 0;
+              }
+              else{
+                foreach ($dash_proses as $row1) {
+                  $datanya1[] = (float) $row1->TOTAL;
+                }
+              }
+              if (!$dash_tolak) {
+                $datanya2[] = 0;
+              }
+              else{
+                foreach ($dash_tolak as $row2) {
+                  $datanya2[] = (float) $row2->TOTAL;
+                }
+              }
+              if (!$dash_pending) {
+                $datanya3[] = 0;
+              }
+              else{
+                foreach ($dash_pending as $row3) {
+                  $datanya3[] = (float) $row3->TOTAL;
+                }
               }
             }
-          }
-          if(!$grafiknya2){
-            // $labelnya2 = array("January", "February", "March", "April", "May","June","July","August","September","October","November","December");
-            $jumlah_data = count($labelnya);
-            for ($i=0; $i <$jumlah_data ; $i++) { 
-              $datanya2[] = "0";
-            }
-          }
-          else{
-            foreach($grafiknya2 as $row){
-              // $labelnya2[] = $row->BULAN;
-              $datanya2[] = (float) $row->TOTAL;
-            }
-            $jumlah_data = count($labelnya);
-            $jumlah_data_ini = count($datanya2);
-            if ($jumlah_data_ini != $jumlah_data) {
-              $hitungan = $jumlah_data - $jumlah_data_ini;
-              for ($i=0; $i < $hitungan ; $i++) { 
-                $datanya2[] = "0";
-              }
-            }
-          }
-          if(!$grafiknya3){
-            // $labelnya3 = array("January", "February", "March", "April", "May","June","July","August","September","October","November","December");
-            $jumlah_data = count($labelnya);
-            for ($i=0; $i <$jumlah_data ; $i++) { 
-              $datanya3[] = "0";
-            }
-          }
-          else{
-            foreach($grafiknya3 as $row){
-              // $labelnya3[] = $row->BULAN;
-              $datanya3[] = (float) $row->TOTAL;
-            }
-            $jumlah_data = count($labelnya);
-            $jumlah_data_ini = count($datanya3);
-            if ($jumlah_data_ini != $jumlah_data) {
-              $hitungan = $jumlah_data - $jumlah_data_ini;
-              for ($i=0; $i < $hitungan ; $i++) { 
-                $datanya3[] = "0";
-              }
-            }
-          }
         ?>
         <script src="<?php echo base_url();?>assets/dash/vendors/Chart.js/dist/Chart.min.js"></script>
         <script type="text/javascript">

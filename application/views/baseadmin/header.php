@@ -63,7 +63,8 @@
               <div class="menu_section">
                 <h3>Laporan</h3>
                 <ul class="nav side-menu">
-                  <li><a href="<?php echo base_url(); ?>admin/laporan"><i class="fa fa-file-o"></i> Laporan </a></li>
+                  <li><a href="<?php echo base_url(); ?>admin/laporan_mandiri"><i class="fa fa-file-o"></i> Laporan Parsial/Mandiri </a></li>
+                  <li><a href="<?php echo base_url(); ?>admin/laporan_paket"><i class="fa fa-file-o"></i> Laporan Paket </a></li>
                 </ul>
               </div>
             </div>
