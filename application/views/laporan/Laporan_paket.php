@@ -44,25 +44,6 @@
                       </div>
                     </form>
                     <br />
-                    <code>SELECT
-  NAMA_IJIN,
-COUNT (NAMA_IJIN) AS JUMLAHNYA
-FROM(
-SELECT
-T_FO.TGL_REGISTRASI,
-T_FO.NO_REGISTRASI,
-T_FO_SUB_IJIN.KD_IJIN,
-MIJIN.NAMA_IJIN
-FROM
-T_FO,T_FO_SUB_IJIN,MIJIN
-WHERE
-T_FO.NO_REGISTRASI = T_FO_SUB_IJIN.NO_REGISTRASI
-AND T_FO_SUB_IJIN.KD_IJIN = MIJIN.KD_IJIN
-AND T_FO.TGL_REGISTRASI BETWEEN TO_DATE ('2018-01-01', 'yyyy-mm-dd')
-AND TO_DATE ('2018-12-31', 'yyyy-mm-dd')
-AND T_FO.ID_PAKET = 14
-)
-GROUP BY NAMA_IJIN</code>
                     <div class="table-responsive">
                           <table id="coba-table" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
                             <thead>

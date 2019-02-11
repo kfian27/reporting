@@ -31,8 +31,14 @@
 			$query = $this->db->query($sql);
 			return $query->result();
         }
-    	 function get_tanggal($tgl1 ='',$tgl2 ='',$param1=''){
+    	function get_tanggal($tgl1 ='',$tgl2 ='',$param1=''){
         	$sql = "SELECT NAMA_IJIN, COUNT (NAMA_IJIN) AS JUMLAHNYA FROM(SELECT T_FO.TGL_REGISTRASI, T_FO.NO_REGISTRASI,T_FO_SUB_IJIN.KD_IJIN, MIJIN.NAMA_IJIN FROM T_FO,T_FO_SUB_IJIN,MIJIN WHERE T_FO.NO_REGISTRASI = T_FO_SUB_IJIN.NO_REGISTRASI AND T_FO.TGL_REGISTRASI = T_FO_SUB_IJIN.TGL_REGISTRASI AND T_FO_SUB_IJIN.KD_IJIN = MIJIN.KD_IJIN AND T_FO.TGL_REGISTRASI BETWEEN TO_DATE ('$tgl1', 'yyyy-mm-dd') AND TO_DATE ('$tgl2', 'yyyy-mm-dd') AND T_FO.ID_PAKET ='$param1') GROUP BY NAMA_IJIN";
+
+			$query = $this->db->query($sql);
+			return $query->result();
+        }
+        function get_tanggal_kecuali($tgl1 ='',$tgl2 ='',$param1=''){
+        	$sql = "SELECT NAMA_IJIN, COUNT (NAMA_IJIN) AS JUMLAHNYA FROM(SELECT T_FO.TGL_REGISTRASI, T_FO.NO_REGISTRASI,T_FO_SUB_IJIN.KD_IJIN, MIJIN.NAMA_IJIN FROM T_FO,T_FO_SUB_IJIN,MIJIN WHERE T_FO.NO_REGISTRASI = T_FO_SUB_IJIN.NO_REGISTRASI AND T_FO.TGL_REGISTRASI = T_FO_SUB_IJIN.TGL_REGISTRASI AND T_FO_SUB_IJIN.KD_IJIN = MIJIN.KD_IJIN AND T_FO.TGL_REGISTRASI BETWEEN TO_DATE ('$tgl1', 'yyyy-mm-dd') AND TO_DATE ('$tgl2', 'yyyy-mm-dd') AND T_FO.ID_PAKET ='$param1' AND T_FO_SUB_IJIN.KD_IJIN != '020500') GROUP BY NAMA_IJIN";
 
 			$query = $this->db->query($sql);
 			return $query->result();

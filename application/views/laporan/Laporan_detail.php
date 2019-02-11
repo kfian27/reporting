@@ -210,7 +210,9 @@
               },
               {
                 extend: "pdfHtml5",
-                className: "btn-sm"
+                className: "btn-sm",
+                orientation: 'landscape',
+                pageSize: 'A4'
               },
               {
                 extend: "print",

@@ -148,7 +148,11 @@ class admin extends CI_Controller {
 		// $tanggal = date('Y-m');
 		$this->load->model('mlaporan_paket');
 		$data['nama_paket'] = $this->mlaporan_paket->get_nm_paket();
-		$data['hasilnya'] = $this->mlaporan_paket->get_tanggal($this->input->post('tgl_mulai'),$this->input->post('tgl_akhir'),$this->input->post('paket'));
+		if($this->input->post('paket')==20)
+			$data['hasilnya'] = $this->mlaporan_paket->get_tanggal_kecuali($this->input->post('tgl_mulai'),$this->input->post('tgl_akhir'),$this->input->post('paket'));
+		else{
+			$data['hasilnya'] = $this->mlaporan_paket->get_tanggal($this->input->post('tgl_mulai'),$this->input->post('tgl_akhir'),$this->input->post('paket'));
+		}
 		$data['tgl_mulai'] = $this->input->post('tgl_mulai');
 		$data['tgl_akhir'] = $this->input->post('tgl_akhir');
 		$data['paketnya'] = $this->input->post('paket'); 
