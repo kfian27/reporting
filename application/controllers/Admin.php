@@ -186,10 +186,11 @@ class admin extends CI_Controller {
 		$tgl_akhirnya = date('Y-m-d', strtotime($akhirnya));
 		$data['tgl_mulai'] = $mulainya;
 		$data['tgl_akhir'] = $akhirnya;
-			$data['hasilnya'] = $this->mlaporan_paket->get_tanggal($tgl_mulainya,$tgl_akhirnya,$uptdnya);
+		$data['hasilnya'] = $this->mlaporan_paket->get_tanggal($tgl_mulainya,$tgl_akhirnya,$uptdnya);
+		$data['prosesnya'] = $this->mlaporan_paket->get_tanggal_imb_gabungan($tgl_mulainya,$tgl_akhirnya,$uptdnya);
 		$data['nama_paket'] = $this->mlaporan_paket->get_nm_paket();
-		$data['tgl_mulai'] = $mulainya;
-		$data['tgl_akhir'] = $akhirnya;
+		$data['tgl_mulainya'] = $tgl_mulainya;
+		$data['tgl_akhirnya'] = $tgl_akhirnya;
 		$data['paketnya'] = $uptdnya; 
 		$this->load->view('baseadmin/header.php');
 		$this->load->view('laporan/laporan_paket.php',$data);
@@ -217,6 +218,23 @@ class admin extends CI_Controller {
 		$data['paketnya'] = $uptdnya; 
 		$this->load->view('baseadmin/header.php');
 		$this->load->view('laporan/laporan_paket_imb.php',$data);
+		$this->load->view('baseadmin/footer.php');
+	}
+	public function laporan_paket_hasil_gabungan($mulainya,$akhirnya,$uptdnya) {
+		// $tanggal = date('Y-m');
+		$this->load->model('mlaporan_paket');
+		$tgl_mulainya = date('Y-m-d', strtotime($mulainya));
+		$tgl_akhirnya = date('Y-m-d', strtotime($akhirnya));
+		$data['tgl_mulai'] = $mulainya;
+		$data['tgl_akhir'] = $akhirnya;
+		$data['hasilnya'] = $this->mlaporan_paket->get_tanggal_imb_gabungan($tgl_mulainya,$tgl_akhirnya,$uptdnya);
+		$data['prosesnya'] = $this->mlaporan_paket->get_tanggal_imb_gabungan($tgl_mulainya,$tgl_akhirnya,$uptdnya);
+		$data['nama_paket'] = $this->mlaporan_paket->get_nm_paket();
+		$data['tgl_mulainya'] = $tgl_mulainya;
+		$data['tgl_akhirnya'] = $tgl_akhirnya;
+		$data['paketnya'] = $uptdnya; 
+		$this->load->view('baseadmin/header.php');
+		$this->load->view('laporan/laporan_paket.php',$data);
 		$this->load->view('baseadmin/footer.php');
 	}
 	public function selesai_paket_detail($mulainya,$akhirnya,$parameternya,$kd_ijin,$jumlah_total){

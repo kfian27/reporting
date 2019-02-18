@@ -218,8 +218,11 @@ AND ID_PAKET = '20''</code>
             if (empat == 20) {
                window.location = "<?php echo base_url();?>admin/laporan_paket_hasil_IMB/"+satu+"/"+dua+"/"+empat;
             }
+            else if(empat == 23 || empat ==30){
+              window.location = "<?php echo base_url();?>admin/laporan_paket_hasil/"+satu+"/"+dua+"/"+empat
+            }
             else {
-              window.location = "<?php echo base_url();?>admin/laporan_paket_hasil/"+satu+"/"+dua+"/"+empat;
+              window.location = "<?php echo base_url();?>admin/laporan_paket_hasil_gabungan/"+satu+"/"+dua+"/"+empat;
             }
           }
           $(document).ready(function() {

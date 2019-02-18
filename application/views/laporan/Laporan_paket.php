@@ -1,3 +1,4 @@
+      <?php  $this->load->model('mlaporan_paket');?>
       <div class="right_col" role="main" id="view">
         <div class="">
           <div class="row">
@@ -51,6 +52,8 @@
                                 <th>No</th>
                                 <th style="text-align: center;">NAMA PERIZINAN/NON PERIZINAN</th>
                                 <th style="text-align: center;">PROSES</th>
+                                <th style="text-align: center;">PENDING</th>
+                                <th style="text-align: center;">TOLAK</th>
                                 <th style="text-align: center;">SELESAI</th>
                                 <th style="text-align: center;">JUMLAH BERKAS</th>
                               </tr>
@@ -59,10 +62,66 @@
                               <?php $a=1; foreach ($hasilnya as $row): ?>
                               <tr>
                                   <td><?php echo $a; ?></td>
-                                  <td><?php echo $row->NAMA_IJIN;?></td>
-                                  <td>0</td>
-                                  <td>0</td>
-                                  <td><?php echo $row->JUMLAHNYA; $a++;?></td>
+                                  <td><?php $JUMLAHNYA = $row->JUMLAH; $nama_headernya = $row->NM_HEADER; echo $row->NM_HEADER;?></td>
+                                  <td><?php 
+                                  $prosesnya = $this->mlaporan_paket->get_tanggal_proses($tgl_mulainya,$tgl_akhirnya,$paketnya,$nama_headernya);
+                                    if (!$prosesnya) {?>
+                                      <a type="button" data-title='button' class="btn btn-default pull-right" disabled> 0 </a>
+                                    <?php
+                                    }
+                                    else {  
+                                      foreach ($prosesnya as $row){
+                                        ?>
+                                        <a type="button" data-title='button' class="btn btn-primary pull-right" href="#"> <?php echo $row->PROSES;?> </a>
+                                        <?php
+                                      }
+                                    }
+                                  ?></td>
+                                  <td><?php 
+                                  $pendingnya = $this->mlaporan_paket->get_tanggal_pending($tgl_mulainya,$tgl_akhirnya,$paketnya,$nama_headernya);
+                                    if (!$pendingnya) {?>
+                                      <a type="button" data-title='button' class="btn btn-default pull-right" disabled> 0 </a>
+                                    <?php
+                                    }
+                                    else {  
+                                      foreach ($pendingnya as $row){
+                                        ?>
+                                        <a type="button" data-title='button' class="btn btn-primary pull-right" href="#"> <?php echo $row->PENDING;?></a>
+                                        <?php
+                                      }
+                                    }
+                                  ?></td>
+                                  <td><?php 
+                                  $tolaknya = $this->mlaporan_paket->get_tanggal_tolak($tgl_mulainya,$tgl_akhirnya,$paketnya,$nama_headernya);
+                                    if (!$tolaknya) {?>
+                                      <a type="button" data-title='button' class="btn btn-default pull-right" disabled> 0 </a>
+                                    <?php
+                                    }
+                                    else {  
+                                      foreach ($tolaknya as $row){
+                                        ?>
+                                        <a type="button" data-title='button' class="btn btn-primary pull-right" href="#"> <?php echo $row->TOLAK;?></a>
+                                        <?php
+                                      }
+                                    }
+                                  ?></td>
+                                  <td>
+                                    <?php 
+                                  $selesainya = $this->mlaporan_paket->get_tanggal_selesai($tgl_mulainya,$tgl_akhirnya,$paketnya,$nama_headernya);
+                                    if (!$selesainya) {?>
+                                      <a type="button" data-title='button' class="btn btn-default pull-right" disabled> 0 </a>
+                                    <?php
+                                    }
+                                    else {  
+                                      foreach ($selesainya as $row){
+                                        ?>
+                                        <a type="button" data-title='button' class="btn btn-primary pull-right" href="#"> <?php echo $row->SELESAI;?> </a>
+                                        <?php
+                                      }
+                                    }
+                                  ?>
+                                  </td>
+                                  <td><?php echo $JUMLAHNYA; $a++;?></td>
                               </tr>
                               <?php endforeach; ?>
                             </tbody>
@@ -84,8 +143,11 @@
             if (empat == 20) {
                window.location = "<?php echo base_url();?>admin/laporan_paket_hasil_IMB/"+satu+"/"+dua+"/"+empat;
             }
+            else if(empat == 23 || empat ==30){
+              window.location = "<?php echo base_url();?>admin/laporan_paket_hasil/"+satu+"/"+dua+"/"+empat
+            }
             else {
-              window.location = "<?php echo base_url();?>admin/laporan_paket_hasil/"+satu+"/"+dua+"/"+empat;
+              window.location = "<?php echo base_url();?>admin/laporan_paket_hasil_gabungan/"+satu+"/"+dua+"/"+empat;
             }
           }
           $(document).ready(function() {

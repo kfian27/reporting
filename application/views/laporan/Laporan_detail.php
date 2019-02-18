@@ -186,12 +186,7 @@
             data: data,
             type: 'pie',
             otpions: {
-              title: {
-                display: true,
-                fontSize: 12,
-                text:'Jumlah Berkas Masuk'
-              },
-              legend: false
+              legend: true
             }
           });
           $("#coba-table").DataTable({
