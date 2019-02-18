@@ -3,7 +3,7 @@ RewriteEngine On
 
 RewriteCond $1 !^(index\.php|robots\.txt|assets|system|application)
 RewriteRule ^(.*)$ /report/index.php/$1 [L]
-
+php_value max_execution_time 200
 ## enable this in production mode only
 #<ifModule mod_expires.c>
 #ExpiresActive On

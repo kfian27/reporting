@@ -12,39 +12,60 @@
                   </div>
                   <div class="x_content">
                     <br>
+                    <form class="form-horizontal">
+                      <div class="col-md-12 col-sm-12 col-xs-12 form-group"> <!-- Date input -->
+                         <label for="tiga" class="col-sm-2 control-label"> Status Berkas </label>
+                         <div class="col-md-4 col-sm-10 col-xs-10">
+                          <select id="table-filter" name="table-filter" class="form-control" placeholder="Lokasi" required="required">
+                            <option value=" ">Semua</option>
+                            <?php  foreach ($nama_proses as $row): ?>
+                              <option><?php echo $row->NAMA_ALUR_PROSES; ?></option>
+                            <?php endforeach; ?>   
+                        </select>
+                        </div>
+                      </div>
+                    </form>
                     <div class="table-responsive">
-                          <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
+                      <div style="color: grey;"><?php echo "About ".$jumlah_total." Result";?></div>
+                          <table id="coba-table" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
                             <thead>
                               <tr>
-                                <th style="max-width: 10%;">No</th>
+                                <th style="max-width: 10%;">NO</th>
                                 <th style="text-align: center; max-width: 25%;">NO PENDAFTARAN</th>
                                 <th style="text-align: center; max-width: 25%;">TANGGAL PENDAFTARAN</th>
                                 <th style="text-align: center; max-width: 25%;">NAMA PEMOHON</th>
                                 <th style="text-align: center; max-width: 25%;">STATUS BERKAS</th>
-                                <th>Alamat Pemohon</th>
-                                <th>Nama Perusahaan</th>
-                                <th>Alamat Perusahaan</th>
-                                <th>Waktu Proses</th>
-                                <th>Nomor SK</th>
+                                <th style="text-align: center; max-width: 25%;"></th>
+                                <th>ALAMAT PEMOHON</th>
+                                <th>NAMA PERUSAHAAN</th>
+                                <th>ALAMAT PERUSAHAAN</th>
+                                <th>WAKTU PROSES</th>
+                                <th>NOMOR SK</th>
                               </tr>
                             </thead>
                             <tbody>
                               <?php $a=1; foreach ($hasilnya as $row): ?>
                               <tr>
                                 <td><?php echo $a; ?></td>
-                                <td>
-                                  <a type="button" data-title='button' class="btn btn-primary pull-right" href="<?php echo base_url();?>admin/histori_detail/<?php echo $row->NO_OL;?>" target="_blank"> <?php echo $row->NO_OL;?> </a>
-                                </td>
+                                <td><?php echo $row->NO_OL;?></td>
                                 <td><?php
-                                  $tanggal = date('Y-m-d', strtotime($row->TGL_OL));
-                                  echo $this->mlaporan->tanggal_indo($tanggal);?>
+                                  $tanggalnya = date('Y-m-d', strtotime($row->TGL_OL));
+                                  echo $this->mlaporan->tanggal_indo($tanggalnya);?>
                                 </td>
                                 <td><?php echo $row->NAMAPEMOHON;?></td>
                                 <td><?php echo $row->NAMA_ALUR_PROSES;?></td>
+                                <td>
+                                  <a type="button" style="font-size: 20px" href="<?php echo base_url();?>admin/histori_detail/<?php echo $tanggalnya;?>/<?php echo $row->NO_OL;?>"><i class="fa fa-search-plus"></i></a>
+                                </td>
                                 <td><?php echo $row->ALAMATPEMOHON;?></td>
                                 <td><?php echo $row->NAMA_PT;?></td>
                                 <td><?php echo $row->ALAMAT_PT;?></td>
-                                <td><?php echo $row->WAKTU;?></td>
+                                <td>
+                                  <?php $prosesnya = $this->mlaporan->get_waktu_proses($tgl_mulai,$tgl_akhir,$row->NO_OL);
+                                  foreach ($prosesnya as $key) {
+                                    echo $key->TOTAL;}
+                                  ?> Hari kerja
+                                </td>
                                 <td><?php echo $row->NO_SK; $a++;?></td>
                               </tr>
                               <?php endforeach; ?>
@@ -57,3 +78,39 @@
             </div>
           </div>
         </div>
+        <script type="text/javascript">
+          $(document).ready(function() {
+            var table = $("#coba-table").DataTable({
+              dom: "Blfrtip",
+              buttons: [
+                {
+                  extend: "copy",
+                  className: "btn-sm"
+                },
+                {
+                  extend: "csv",
+                  className: "btn-sm"
+                },
+                {
+                  extend: "excel",
+                  className: "btn-sm"
+                },
+                {
+                  extend: "pdfHtml5",
+                  className: "btn-sm",
+                  orientation: 'landscape',
+                  pageSize: 'A4'
+                },
+                {
+                  extend: "print",
+                  title: '-<?php echo $judulnya; ?>-',
+                  className: "btn-sm"
+                },
+              ],
+              responsive: true
+            });
+            $('#table-filter').on('change', function(){
+              table.search(this.value).draw();   
+            });
+          });
+        </script>

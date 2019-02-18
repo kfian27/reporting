@@ -30,15 +30,19 @@
     <link href="<?php echo base_url();?>assets/dash/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" rel="stylesheet">
     <!-- bootstrap-daterangepicker -->
     <link href="<?php echo base_url();?>assets/dash/vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
+    <!-- bootstrap-datetimepicker -->
+    <link href="<?php echo base_url();?>assets/dash/vendors/bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.css" rel="stylesheet">
+    <!-- animate.css -->
+    <link href="<?php echo base_url();?>assets/dash/vendors/animate.css/animate.min.css" rel="stylesheet">
     <!-- Custom Theme Style -->
     <link href="<?php echo base_url();?>assets/dash/build/css/custom.min.css" rel="stylesheet">
     <!-- <script src="<?php echo base_url();?>assets/js/base.js" type="text/javascript"></script> -->
   </head>
 
-  <body class="nav-md footer_fixed">
+  <body class="nav-md">
     <div class="container body">
       <div class="main_container">
-        <div class="col-md-3 left_col">
+        <div class="col-md-3 left_col menu_fixed">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
               <a href="<?php echo base_url();?>admin" class="site_title"><i class="fa fa-paw"></i> <span>Dashboard</span></a>
@@ -57,14 +61,19 @@
               <div class="menu_section">
                 <h3>General</h3>
                 <ul class="nav side-menu">
-                  <li><a href="<?php echo base_url();?>admin/home"><i class="fa fa-home"></i> Home </a></li>
+                  <li><a href="<?php echo base_url(); ?>"><i class="fa fa-home"></i> Home </a></li>
                 </ul>
               </div>
               <div class="menu_section">
                 <h3>Laporan</h3>
                 <ul class="nav side-menu">
-                  <li><a href="<?php echo base_url(); ?>admin/laporan_mandiri"><i class="fa fa-file-o"></i> Laporan Parsial/Mandiri </a></li>
-                  <li><a href="<?php echo base_url(); ?>admin/laporan_paket"><i class="fa fa-file-o"></i> Laporan Paket </a></li>
+                  <li><a><i class="fa fa-file"></i> Parsial/Mandiri <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="<?php echo base_url(); ?>admin/laporan_mandiri">Laporan</a></li>
+                      <li><a href="<?php echo base_url();?>admin/laporan_mandiri_tahunan">Laporan Tahunan</a></li>
+                    </ul>
+                  </li>
+                  <li><a href="<?php echo base_url(); ?>admin/laporan_paket"><i class="fa fa-file-o"></i> Paket </a></li>
                 </ul>
               </div>
             </div>
@@ -93,7 +102,7 @@
                     <span class=" fa fa-angle-down"></span>
                   </a>
                   <ul class="dropdown-menu dropdown-usermenu pull-right">
-                    <li><a href="<?php echo base_url();?>login/log_out"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
+                    <li><a href="<?php echo base_url();?>login/log_out"> Log Out <i class="fa fa-sign-out"></i></a></li>
                   </ul>
                 </li>
               </ul>

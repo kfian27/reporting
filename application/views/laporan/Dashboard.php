@@ -5,7 +5,7 @@
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h1>Dashboard Perizinan/Non Perizinan SSW</h1>
+                    <h1>Laporan Tahunan Perizinan/Non Perizinan SSW Parsial/Mandiri</h1>
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">

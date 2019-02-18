@@ -6,7 +6,7 @@
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h1>Historikal No OL : <?php echo $nomer_ol;?></h1>
+                    <h1>Historikal No OL : <?php echo $nomer_ol;?> Tanggal OL : <?php echo $this->mlaporan->tanggal_indo($tanggalannya);?></h1>
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
@@ -19,7 +19,7 @@
                                 <!-- <th style="text-align: center; max-width: 25%;">NO PENDAFTARAN</th> -->
                                 <!-- <th style="text-align: center; max-width: 25%;">TANGGAL PENDAFTARAN</th> -->
                                 <th style="text-align: center; max-width: 10%;">NAMA PETUGAS</th>
-                                <th style="text-align: center; max-width: 50%;">TANGGAL PROSES</th>
+                                <th style="text-align: center; max-width: 20%;">TANGGAL PROSES</th>
                                 <th style="text-align: center; max-width: 10%;">STATUS BERKAS</th>
                                 <th style="text-align: center; max-width: 10%;">KETERANGAN</th>
                               </tr>
@@ -31,9 +31,9 @@
                                 <!-- <td><?php echo $a;?></td> -->
                                 <td><?php echo $row->NAMA;?></td>
                                 <td><?php
-                                echo $row->TGL_PROSES;
-                                  // $tanggal = date('Y-m-d', strtotime($row->TGL_PROSES));
-                                  // echo $this->mlaporan->tanggal_indo($tanggal);
+                                // echo $row->TGL_PROSES;
+                                  $tanggal = date('Y-m-d', strtotime($row->TGL_PROSES));
+                                  echo $this->mlaporan->tanggal_indo($tanggal);
                                   ?>
                                 </td>
                                 <td><?php echo $row->NAMA_ALUR_PROSES;?></td>

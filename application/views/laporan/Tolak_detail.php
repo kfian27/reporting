@@ -13,38 +13,46 @@
                   <div class="x_content">
                     <br>
                     <div class="table-responsive">
+                      <div style="color: grey;"><?php echo "About ".$jumlah_total." Result";?></div>
                           <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
                             <thead>
                               <tr>
-                                <th style="max-width: 10%;">No</th>
+                                <th style="max-width: 10%;">NO</th>
                                 <th style="text-align: center; max-width: 25%;">NO PENDAFTARAN</th>
                                 <th style="text-align: center; max-width: 25%;">TANGGAL PENDAFTARAN</th>
                                 <th style="text-align: center; max-width: 25%;">NAMA PEMOHON</th>
                                 <th style="text-align: center; max-width: 25%;">STATUS BERKAS</th>
-                                <th>Alamat Pemohon</th>
-                                <th>Nama Perusahaan</th>
-                                <th>Alamat Perusahaan</th>
-                                <th>Waktu Proses</th>
-                                <th>Nomor SK</th>
+                                <th style="text-align: center; max-width: 25%;"></th>
+                                <th>ALAMAT PEMOHON</th>
+                                <th>NAMA PERUSAHAAN</th>
+                                <th>ALAMAT PERUSAHAAN</th>
+                                <th>WAKTU PROSES</th>
+                                <th>NOMOR SK</th>
                               </tr>
                             </thead>
                             <tbody>
                               <?php $a=1; foreach ($hasilnya as $row): ?>
                               <tr>
                                 <td><?php echo $a; ?></td>
-                                <td>
-                                  <a type="button" data-title='button' class="btn btn-primary pull-right" href="<?php echo base_url();?>admin/histori_detail/<?php echo $row->NO_OL;?>" target="_blank"> <?php echo $row->NO_OL;?> </a>
-                                </td>
+                                <td><?php echo $row->NO_OL;?></td>
                                 <td><?php
-                                  $tanggal = date('Y-m-d', strtotime($row->TGL_OL));
-                                  echo $this->mlaporan->tanggal_indo($tanggal);?>
+                                  $tanggalnya = date('Y-m-d', strtotime($row->TGL_OL));
+                                  echo $this->mlaporan->tanggal_indo($tanggalnya);?>
                                 </td>
                                 <td><?php echo $row->NAMAPEMOHON;?></td>
                                 <td><?php echo $row->NAMA_ALUR_PROSES;?></td>
+                                <td>
+                                  <a type="button" style="font-size: 20px" href="<?php echo base_url();?>admin/histori_detail/<?php echo $tanggalnya;?>/<?php echo $row->NO_OL;?>"><i class="fa fa-search-plus"></i></a>
+                                </td>
                                 <td><?php echo $row->ALAMATPEMOHON;?></td>
                                 <td><?php echo $row->NAMA_PT;?></td>
                                 <td><?php echo $row->ALAMAT_PT;?></td>
-                                <td><?php echo $row->WAKTU;?></td>
+                                <td><?php $prosesnya = $this->mlaporan->get_waktu_selesai($tgl_mulai,$tgl_akhir,$row->NO_OL);
+                                  foreach ($prosesnya as $key) {
+                                    if($key->TOTAL<0) echo 0;
+                                    else echo $key->TOTAL;
+                                  }
+                                  ?> Hari kerja</td>
                                 <td><?php echo $row->NO_SK; $a++;?></td>
                               </tr>
                               <?php endforeach; ?>

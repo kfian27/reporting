@@ -1,4 +1,4 @@
-<?php  $this->load->model('mlaporan'); $tanggal = date('Y-m-d', strtotime($tgl_mulai)); $tanggal1 = date('Y-m-d', strtotime($tgl_akhir));?>
+<?php  $this->load->model('mlaporan_paket'); $tanggal = date('Y-m-d', strtotime($tgl_mulai)); $tanggal1 = date('Y-m-d', strtotime($tgl_akhir));?>
       <div class="right_col" role="main" id="view">
         <div class="">
           <div class="row">
@@ -6,8 +6,8 @@
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h1><?php echo $judulnya; ?> (SELESAI)</h1>
-                    <h4><?php echo "Periode Berkas Masuk ".$this->mlaporan->tanggal_indo($tanggal)." Sampai ".$this->mlaporan->tanggal_indo($tanggal1);?></h4>
+                    <h1><?php echo $judulnya; ?> (PENDING)</h1>
+                    <h4><?php echo "Periode Berkas Masuk ".$this->mlaporan_paket->tanggal_indo($tanggal)." Sampai ".$this->mlaporan_paket->tanggal_indo($tanggal1);?></h4>
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
@@ -21,7 +21,6 @@
                                 <th style="text-align: center; max-width: 25%;">NO PENDAFTARAN</th>
                                 <th style="text-align: center; max-width: 25%;">TANGGAL PENDAFTARAN</th>
                                 <th style="text-align: center; max-width: 25%;">NAMA PEMOHON</th>
-                                <th style="text-align: center; max-width: 25%;">STATUS BERKAS</th>
                                 <th style="text-align: center; max-width: 25%;"></th>
                                 <th>ALAMAT PEMOHON</th>
                                 <th>NAMA PERUSAHAAN</th>
@@ -34,25 +33,21 @@
                               <?php $a=1; foreach ($hasilnya as $row): ?>
                               <tr>
                                 <td><?php echo $a; ?></td>
-                                <td><?php echo $row->NO_OL;?></td>
+                                <td><?php echo $row->NO_REGISTRASI;?></td>
                                 <td><?php
-                                  $tanggalnya = date('Y-m-d', strtotime($row->TGL_OL));
-                                  echo $this->mlaporan->tanggal_indo($tanggalnya);?>
+                                  $tanggalnya = date('Y-m-d', strtotime($row->TGL_REGISTRASI));
+                                  echo $this->mlaporan_paket->tanggal_indo($tanggalnya);?>
                                 </td>
-                                <td><?php echo $row->NAMAPEMOHON;?></td>
-                                <td><?php echo $row->NAMA_ALUR_PROSES;?></td>
+                                <td><?php echo $row->NAMA;?></td>
                                 <td>
-                                  <a type="button" style="font-size: 20px" href="<?php echo base_url();?>admin/histori_detail/<?php echo $tanggalnya;?>/<?php echo $row->NO_OL;?>"><i class="fa fa-search-plus"></i></a>
+                                  <a type="button" style="font-size: 20px" href="#"><i class="fa fa-search-plus"></i></a>
                                 </td>
-                                <td><?php echo $row->ALAMATPEMOHON;?></td>
-                                <td><?php echo $row->NAMA_PT;?></td>
-                                <td><?php echo $row->ALAMAT_PT;?></td>
-                                <td><?php $prosesnya = $this->mlaporan->get_waktu_selesai($tgl_mulai,$tgl_akhir,$row->NO_OL);
-                                  foreach ($prosesnya as $key) {
-                                    echo $key->TOTAL;}
-                                  ?> Hari kerja
+                                <td><?php echo $row->ALAMAT;?></td>
+                                <td><?php echo $row->NAMA_PERUSAHAAN;?></td>
+                                 <td><?php echo $row->ALAMAT_PT;?></td>
+                                <td> Hari kerja
                                 </td>
-                                <td><?php echo $row->NO_SK; $a++;?></td>
+                                <td><?php echo "TIDAK ADA"; $a++;?></td>
                               </tr>
                               <?php endforeach; ?>
                             </tbody>

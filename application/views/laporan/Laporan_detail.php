@@ -49,7 +49,7 @@
                     <div class="col-md-8 col-sm-12 col-xs-12">
                       <h1><?php echo $judulnya; ?>
                       </h1>
-                      <h4><?php echo "Periode Berkas Masuk ".$this->mlaporan->tanggal_indo($tanggal)." Sampai ".$this->mlaporan->tanggal_indo($tanggal1)." Dengan Total Berkas Masuk ".$jumlah_total;?></h4>
+                      <h4><?php echo "Periode Berkas Masuk ".$this->mlaporan->tanggal_indo($tanggal)." Sampai ".$this->mlaporan->tanggal_indo($tanggal1);?></h4>
                     </div>
                     <div class="col-md-4 col-sm-12 col-xs-12 classnya"><!-- Date input -->
                       <canvas id="pie1" height="150px"></canvas>
@@ -65,10 +65,11 @@
                   <div class="x_content">
                     <br>
                     <div class="table-responsive">
+                      <div style="color: grey;"><?php echo "About ".$jumlah_total." Result";?></div>
                       <table id="coba-table" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
                         <thead>
                           <tr>
-                            <th style="max-width: 10%;">No</th>
+                            <th style="max-width: 10%;">NO</th>
                             <th style="text-align: center; max-width: 10%;">NAMA PERIZINAN/NON PERIZINAN</th>
                             <th style="text-align: center; max-width: 10%;">PROSES</th>
                             <th style="text-align: center; max-width: 10%;">PENDING</th>
@@ -95,7 +96,7 @@
                                   else { 
                                     foreach ($prosesnya as $row){
                                       ?>
-                                      <a type="button" data-title='button' class="btn btn-primary pull-right" href="<?php echo base_url();?>admin/proses_detail/<?php echo $tgl_mulai;?>/<?php echo $tgl_akhir;?>/<?php $string = str_replace(' ', '_', $nama_ijinnya); echo str_replace('/', '.', $string);?>/<?php echo $kode_ijinnya;?>" target="_blank"> <?php echo $row->PROSESNYA;?> </a>
+                                      <a type="button" data-title='button' class="btn btn-primary pull-right" href="<?php echo base_url();?>admin/proses_detail/<?php echo $tgl_mulai;?>/<?php echo $tgl_akhir;?>/<?php $string = str_replace(' ', '_', $nama_ijinnya); echo str_replace('/', '.', $string);?>/<?php echo $kode_ijinnya;?>/<?php echo $row->PROSESNYA;?>"> <?php echo $row->PROSESNYA;?> </a>
                                       <?php
                                       $total_proses = $total_proses + $row->PROSESNYA;
                                     }
@@ -111,7 +112,7 @@
                                     else { 
                                       foreach ($pendingnya as $row){
                                         ?>
-                                        <a type="button" data-title='button' class="btn btn-primary pull-right" href="<?php echo base_url();?>admin/pending_detail/<?php echo $tgl_mulai;?>/<?php echo $tgl_akhir;?>/<?php $string = str_replace(' ', '_', $nama_ijinnya); echo str_replace('/', '.', $string);?>/<?php echo $kode_ijinnya;?>" target="_blank"> <?php echo $row->PENDINGNYA;?> </a>
+                                        <a type="button" data-title='button' class="btn btn-primary pull-right" href="<?php echo base_url();?>admin/pending_detail/<?php echo $tgl_mulai;?>/<?php echo $tgl_akhir;?>/<?php $string = str_replace(' ', '_', $nama_ijinnya); echo str_replace('/', '.', $string);?>/<?php echo $kode_ijinnya;?>/<?php echo $row->PENDINGNYA;?>"> <?php echo $row->PENDINGNYA;?> </a>
                                         <?php
                                         $total_pending = $total_pending + $row->PENDINGNYA;
                                       }
@@ -126,7 +127,7 @@
                                   else {
                                     foreach ($tolaknya as $row){
                                       ?>
-                                      <a type="button" data-title='button' class="btn btn-primary pull-right" href="<?php echo base_url();?>admin/tolak_detail/<?php echo $tgl_mulai;?>/<?php echo $tgl_akhir;?>/<?php $string = str_replace(' ', '_', $nama_ijinnya); echo str_replace('/', '.', $string);?>/<?php echo $kode_ijinnya;?>" target="_blank"> <?php echo $row->TOLAKNYA;?> </a>
+                                      <a type="button" data-title='button' class="btn btn-primary pull-right" href="<?php echo base_url();?>admin/tolak_detail/<?php echo $tgl_mulai;?>/<?php echo $tgl_akhir;?>/<?php $string = str_replace(' ', '_', $nama_ijinnya); echo str_replace('/', '.', $string);?>/<?php echo $kode_ijinnya;?>/<?php echo $row->TOLAKNYA;?>"> <?php echo $row->TOLAKNYA;?> </a>
                                       <?php
                                       $total_tolak = $total_tolak + $row->TOLAKNYA;
                                     }
@@ -141,7 +142,7 @@
                                     else {  
                                       foreach ($selesainya as $row){
                                         ?>
-                                        <a type="button" data-title='button' class="btn btn-primary pull-right" href="<?php echo base_url();?>admin/selesai_detail/<?php echo $tgl_mulai;?>/<?php echo $tgl_akhir;?>/<?php $string = str_replace(' ', '_', $nama_ijinnya); echo str_replace('/', '.', $string);?>/<?php echo $kode_ijinnya;?>" target="_blank"> <?php echo $row->SELESAINYA;?> </a>
+                                        <a type="button" data-title='button' class="btn btn-primary pull-right" href="<?php echo base_url();?>admin/selesai_detail/<?php echo $tgl_mulai;?>/<?php echo $tgl_akhir;?>/<?php $string = str_replace(' ', '_', $nama_ijinnya); echo str_replace('/', '.', $string);?>/<?php echo $kode_ijinnya;?>/<?php echo $row->SELESAINYA;?>"> <?php echo $row->SELESAINYA;?> </a>
                                         <?php
                                         $total_selesai = $total_selesai + $row->SELESAINYA;
                                       }
