@@ -96,7 +96,7 @@
                                   else { 
                                     foreach ($prosesnya as $row){
                                       ?>
-                                      <a type="button" data-title='button' class="btn btn-primary pull-right" href="<?php echo base_url();?>admin/proses_detail/<?php echo $tgl_mulai;?>/<?php echo $tgl_akhir;?>/<?php $string = str_replace(' ', '_', $nama_ijinnya); echo str_replace('/', '.', $string);?>/<?php echo $kode_ijinnya;?>/<?php echo $row->PROSESNYA;?>"> <?php echo $row->PROSESNYA;?> </a>
+                                      <a type="button" data-title='button' class="btn btn-primary pull-right" href="<?php echo base_url();?>laporan_mandiri/proses_detail/<?php echo $tgl_mulai;?>/<?php echo $tgl_akhir;?>/<?php $string = str_replace(' ', '_', $nama_ijinnya); echo str_replace('/', '.', $string);?>/<?php echo $kode_ijinnya;?>/<?php echo $row->PROSESNYA;?>"> <?php echo $row->PROSESNYA;?> </a>
                                       <?php
                                       $total_proses = $total_proses + $row->PROSESNYA;
                                     }
@@ -112,7 +112,7 @@
                                     else { 
                                       foreach ($pendingnya as $row){
                                         ?>
-                                        <a type="button" data-title='button' class="btn btn-primary pull-right" href="<?php echo base_url();?>admin/pending_detail/<?php echo $tgl_mulai;?>/<?php echo $tgl_akhir;?>/<?php $string = str_replace(' ', '_', $nama_ijinnya); echo str_replace('/', '.', $string);?>/<?php echo $kode_ijinnya;?>/<?php echo $row->PENDINGNYA;?>"> <?php echo $row->PENDINGNYA;?> </a>
+                                        <a type="button" data-title='button' class="btn btn-primary pull-right" href="<?php echo base_url();?>laporan_mandiri/pending_detail/<?php echo $tgl_mulai;?>/<?php echo $tgl_akhir;?>/<?php $string = str_replace(' ', '_', $nama_ijinnya); echo str_replace('/', '.', $string);?>/<?php echo $kode_ijinnya;?>/<?php echo $row->PENDINGNYA;?>"> <?php echo $row->PENDINGNYA;?> </a>
                                         <?php
                                         $total_pending = $total_pending + $row->PENDINGNYA;
                                       }
@@ -127,7 +127,7 @@
                                   else {
                                     foreach ($tolaknya as $row){
                                       ?>
-                                      <a type="button" data-title='button' class="btn btn-primary pull-right" href="<?php echo base_url();?>admin/tolak_detail/<?php echo $tgl_mulai;?>/<?php echo $tgl_akhir;?>/<?php $string = str_replace(' ', '_', $nama_ijinnya); echo str_replace('/', '.', $string);?>/<?php echo $kode_ijinnya;?>/<?php echo $row->TOLAKNYA;?>"> <?php echo $row->TOLAKNYA;?> </a>
+                                      <a type="button" data-title='button' class="btn btn-primary pull-right" href="<?php echo base_url();?>laporan_mandiri/tolak_detail/<?php echo $tgl_mulai;?>/<?php echo $tgl_akhir;?>/<?php $string = str_replace(' ', '_', $nama_ijinnya); echo str_replace('/', '.', $string);?>/<?php echo $kode_ijinnya;?>/<?php echo $row->TOLAKNYA;?>"> <?php echo $row->TOLAKNYA;?> </a>
                                       <?php
                                       $total_tolak = $total_tolak + $row->TOLAKNYA;
                                     }
@@ -142,7 +142,7 @@
                                     else {  
                                       foreach ($selesainya as $row){
                                         ?>
-                                        <a type="button" data-title='button' class="btn btn-primary pull-right" href="<?php echo base_url();?>admin/selesai_detail/<?php echo $tgl_mulai;?>/<?php echo $tgl_akhir;?>/<?php $string = str_replace(' ', '_', $nama_ijinnya); echo str_replace('/', '.', $string);?>/<?php echo $kode_ijinnya;?>/<?php echo $row->SELESAINYA;?>"> <?php echo $row->SELESAINYA;?> </a>
+                                        <a type="button" data-title='button' class="btn btn-primary pull-right" href="<?php echo base_url();?>laporan_mandiri/selesai_detail/<?php echo $tgl_mulai;?>/<?php echo $tgl_akhir;?>/<?php $string = str_replace(' ', '_', $nama_ijinnya); echo str_replace('/', '.', $string);?>/<?php echo $kode_ijinnya;?>/<?php echo $row->SELESAINYA;?>"> <?php echo $row->SELESAINYA;?> </a>
                                         <?php
                                         $total_selesai = $total_selesai + $row->SELESAINYA;
                                       }

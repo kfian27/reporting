@@ -42,7 +42,7 @@
                                 <td><?php echo $row->NAMAPEMOHON;?></td>
                                 <td><?php echo $row->NAMA_ALUR_PROSES;?></td>
                                 <td>
-                                  <a type="button" style="font-size: 20px" href="<?php echo base_url();?>admin/histori_detail/<?php echo $tanggalnya;?>/<?php echo $row->NO_OL;?>"><i class="fa fa-search-plus"></i></a>
+                                  <a type="button" style="font-size: 20px" href="<?php echo base_url();?>laporan_mandiri/histori_detail/<?php echo $tanggalnya;?>/<?php echo $row->NO_OL;?>"><i class="fa fa-search-plus"></i></a>
                                 </td>
                                 <td><?php echo $row->ALAMATPEMOHON;?></td>
                                 <td><?php echo $row->NAMA_PT;?></td>
@@ -65,3 +65,44 @@
             </div>
           </div>
         </div>
+         <script type="text/javascript">
+          $(document).ready(function() {
+            $("#coba-table").DataTable({
+              columnDefs: [
+                { "width": "10px", "targets": 0 },
+                { "width": "100px", "targets": 1 },
+                { "width": "100px", "targets": 2 },
+                { "width": "100px", "targets": 3 },
+                { "width": "100px", "targets": 4 },
+                { "width": "10px", "targets": 5 }
+              ],
+              dom: "Blfrtip",
+              buttons: [
+                {
+                  extend: "copy",
+                  className: "btn-sm"
+                },
+                {
+                  extend: "csv",
+                  className: "btn-sm"
+                },
+                {
+                  extend: "excel",
+                  className: "btn-sm"
+                },
+                {
+                  extend: "pdfHtml5",
+                  className: "btn-sm",
+                  orientation: 'landscape',
+                  pageSize: 'A4'
+                },
+                {
+                  extend: "print",
+                  title: '-<?php echo $judulnya; ?>-',
+                  className: "btn-sm"
+                },
+              ],
+              responsive: true
+            });
+          });
+        </script>

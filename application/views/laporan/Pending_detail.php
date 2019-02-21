@@ -40,7 +40,7 @@
                                 <td><?php echo $row->NAMAPEMOHON;?></td>
                                 <td><?php echo substr($row->NAMA_ALUR_PROSES,0,21);?></td>
                                 <td>
-                                  <a type="button" style="font-size: 20px" href="<?php echo base_url();?>admin/histori_detail/<?php echo $tanggalnya;?>/<?php echo $row->NO_OL;?>"><i class="fa fa-search-plus"></i></a>
+                                  <a type="button" style="font-size: 20px" href="<?php echo base_url();?>laporan_mandiri/histori_detail/<?php echo $tanggalnya;?>/<?php echo $row->NO_OL;?>"><i class="fa fa-search-plus"></i></a>
                                 </td>
                                 <td><?php echo $row->ALAMATPEMOHON;?></td>
                                 <td><?php echo $row->NAMA_PT;?></td>
@@ -56,9 +56,13 @@
             </div>
           </div>
         </div>
-        <script type="text/javascript">
+       <script type="text/javascript">
           $(document).ready(function() {
-            $("#coba-table").DataTable({
+            var table = $("#coba-table").DataTable({
+              columnDefs: [
+                { "width": "10%", "targets": [0,5] },
+                { "width": "20%", "targets": [1,2,3,4] }
+              ],
               dom: "Blfrtip",
               buttons: [
                 {
@@ -86,6 +90,9 @@
                 },
               ],
               responsive: true
+            });
+            $('#table-filter').on('change', function(){
+              table.search(this.value).draw();   
             });
           });
         </script>

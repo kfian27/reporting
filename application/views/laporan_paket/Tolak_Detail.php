@@ -6,7 +6,7 @@
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h1><?php echo $judulnya; ?> (PROSES)</h1>
+                    <h1><?php echo $judulnya; ?> (DITOLAK)</h1>
                     <h4><?php echo "Periode Berkas Masuk ".$this->mlaporan_paket->tanggal_indo($tanggal)." Sampai ".$this->mlaporan_paket->tanggal_indo($tanggal1);?></h4>
                     <div class="clearfix"></div>
                   </div>
@@ -39,7 +39,7 @@
                                   echo $this->mlaporan_paket->tanggal_indo($tanggalnya);?>
                                 </td>
                                 <td><?php echo $row->NAMA;?></td>
-                                <td>
+                               <td>
                                   <?php if($judulnya == 'IMB' || $judulnya == 'SKRK'): ?>
                                     <a type="button" style="font-size: 20px" href="<?php echo base_url();?>laporan_paket/histori_detail_imb/<?php echo $tanggalnya;?>/<?php echo $row->NO_REGISTRASI;?>/<?php echo $judulnya;?>"><i class="fa fa-search-plus"></i></a>
                                   <?php else: ?>
@@ -50,18 +50,26 @@
                                 <td><?php echo $row->NAMA_PERUSAHAAN;?></td>
                                  <td><?php echo $row->ALAMAT_PT;?></td>
                                 <td>
-                                  <?php 
-                                  if ($judulnya == 'IMB' || $judulnya == 'SKRK') {
-                                    $prosesnya = $this->mlaporan_paket->get_waktu_proses_imb($tgl_mulai,$tgl_akhir,$row->NO_REGISTRASI);
-                                    foreach ($prosesnya as $key) {
-                                      echo $key->TOTAL;}
+                                <?php 
+                                  if ($judulnya == 'IMB') {
+                                    # code...
+                                  }
+                                  elseif ($judulnya == 'SKRK') {
+                                    # code...
                                   }
                                   else{
-                                    $prosesnya = $this->mlaporan_paket->get_waktu_proses($tgl_mulai,$tgl_akhir,$row->NO_REGISTRASI);
-                                    foreach ($prosesnya as $key) {
-                                      echo $key->TOTAL;}
+                                    $prosesnya = $this->mlaporan_paket->get_waktu_selesai($tgl_mulai,$tgl_akhir,$row->NO_REGISTRASI);
+                                    if (!$prosesnya) {
+                                      echo "0";
+                                    }
+                                    else{
+                                      foreach ($prosesnya as $key) {
+                                        if($key->TOTAL<0) echo 0;
+                                        else echo $key->TOTAL;
+                                      }
+                                    }
                                   }
-                                  ?> 
+                                ?> 
                                   Hari kerja
                                 </td>
                                 <td><?php echo "TIDAK ADA"; $a++;?></td>

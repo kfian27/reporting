@@ -72,7 +72,7 @@
                                     else {  
                                       foreach ($prosesnya as $row){
                                         ?>
-                                        <a type="button" data-title='button' class="btn btn-primary pull-right" href="#"> <?php echo $row->PROSES;?> </a>
+                                        <a type="button" data-title='button' class="btn btn-primary pull-right" href='<?php echo base_url();?>laporan_paket/proses_detail/<?php echo $tgl_mulai;?>/<?php echo $tgl_akhir;?>/<?php echo $paketnya;?>/<?php $string = str_replace(' ', '_', $nama_headernya); echo str_replace('/', '.', $string);?>/<?php echo $row->PROSES;?>'> <?php echo $row->PROSES;?> </a>
                                         <?php
                                       }
                                     }
@@ -86,7 +86,7 @@
                                     else {  
                                       foreach ($pendingnya as $row){
                                         ?>
-                                        <a type="button" data-title='button' class="btn btn-primary pull-right" href="#"> <?php echo $row->PENDING;?></a>
+                                        <a type="button" data-title='button' class="btn btn-primary pull-right" href='<?php echo base_url();?>laporan_paket/pending_detail/<?php echo $tgl_mulai;?>/<?php echo $tgl_akhir;?>/<?php echo $paketnya;?>/<?php $string = str_replace(' ', '_', $nama_headernya); echo str_replace('/', '.', $string);?>/<?php echo $row->PENDING;?>'> <?php echo $row->PENDING;?></a>
                                         <?php
                                       }
                                     }
@@ -100,7 +100,7 @@
                                     else {  
                                       foreach ($tolaknya as $row){
                                         ?>
-                                        <a type="button" data-title='button' class="btn btn-primary pull-right" href="#"> <?php echo $row->TOLAK;?></a>
+                                        <a type="button" data-title='button' class="btn btn-primary pull-right" href='<?php echo base_url();?>laporan_paket/tolak_detail/<?php echo $tgl_mulai;?>/<?php echo $tgl_akhir;?>/<?php echo $paketnya;?>/<?php $string = str_replace(' ', '_', $nama_headernya); echo str_replace('/', '.', $string);?>/<?php echo $row->TOLAK;?>'> <?php echo $row->TOLAK;?></a>
                                         <?php
                                       }
                                     }
@@ -115,7 +115,7 @@
                                     else {  
                                       foreach ($selesainya as $row){
                                         ?>
-                                        <a type="button" data-title='button' class="btn btn-primary pull-right" href="#"> <?php echo $row->SELESAI;?> </a>
+                                        <a type="button" data-title='button' class="btn btn-primary pull-right" href='<?php echo base_url();?>laporan_paket/selesai_detail/<?php echo $tgl_mulai;?>/<?php echo $tgl_akhir;?>/<?php echo $paketnya;?>/<?php $string = str_replace(' ', '_', $nama_headernya); echo str_replace('/', '.', $string);?>/<?php echo $row->SELESAI;?>'> <?php echo $row->SELESAI;?> </a>
                                         <?php
                                       }
                                     }
@@ -141,13 +141,13 @@
             var dua = $('#tgl_akhir').val();
             var empat = $('#paket').val();
             if (empat == 20) {
-               window.location = "<?php echo base_url();?>admin/laporan_paket_hasil_IMB/"+satu+"/"+dua+"/"+empat;
+               window.location = "<?php echo base_url();?>laporan_paket/hasil_IMB/"+satu+"/"+dua+"/"+empat;
             }
             else if(empat == 23 || empat ==30){
-              window.location = "<?php echo base_url();?>admin/laporan_paket_hasil/"+satu+"/"+dua+"/"+empat
+              window.location = "<?php echo base_url();?>laporan_paket/hasil/"+satu+"/"+dua+"/"+empat
             }
             else {
-              window.location = "<?php echo base_url();?>admin/laporan_paket_hasil_gabungan/"+satu+"/"+dua+"/"+empat;
+              window.location = "<?php echo base_url();?>laporan_paket/hasil_gabungan/"+satu+"/"+dua+"/"+empat;
             }
           }
           $(document).ready(function() {

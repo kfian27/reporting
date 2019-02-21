@@ -61,7 +61,7 @@
                                   <td><?php echo $row->NM_HEADER;?></td>
                                   <td><?php echo $row->JUMLAHNYA; $a++;?></td>
                                   <td>
-                                    <a type="button" data-title='Edit' class="btn btn-primary pull-right" href="<?php echo base_url();?>admin/laporan_mandiri_detail/<?php echo $tgl_mulai;?>/<?php echo $tgl_akhir;?>/<?php $string = str_replace(' ', '_', $row->NM_HEADER); echo str_replace('/', '.', $string);?>/<?php echo $row->JUMLAHNYA;?>"> View Details </a>
+                                    <a type="button" data-title='Edit' class="btn btn-primary pull-right" href="<?php echo base_url();?>laporan_mandiri/detail/<?php echo $tgl_mulai;?>/<?php echo $tgl_akhir;?>/<?php $string = str_replace(' ', '_', $row->NM_HEADER); echo str_replace('/', '.', $string);?>/<?php echo $row->JUMLAHNYA;?>"> View Details </a>
                                   </td>
                               </tr>
                               <?php endforeach; ?>
@@ -82,7 +82,7 @@
             var satu = $('#tgl_mulai').val();
             var dua = $('#tgl_akhir').val();
             var empat = $('#uptd').val();
-            window.location = "<?php echo base_url();?>admin/laporan_mandiri_hasil/"+satu+"/"+dua+"/"+empat;
+            window.location = "<?php echo base_url();?>laporan_mandiri/hasil/"+satu+"/"+dua+"/"+empat;
           }
           $(document).ready(function() {
              $('#uptd').val('<?php echo $dinas;?>');

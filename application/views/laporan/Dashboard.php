@@ -10,7 +10,7 @@
                   </div>
                   <div class="x_content">
                   <div class="col-md-12 col-sm-12 col-xs-12">
-                    <form class="form-horizontal"  method="post" action="<?php echo base_url(); ?>admin/grafik">
+                    <form class="form-horizontal"  method="post" action="<?php echo base_url(); ?>laporan_mandiri/grafik_tahunan">
                       <div class="col-md-12 col-sm-12 col-xs-12 form-group"> <!-- Date input -->
                         <label for="tiga" class="col-sm-4 control-label" style="text-align: left;"> Tahun Berkas Masuk </label>
                         <div class="col-md-8 col-sm-12 col-xs-12">

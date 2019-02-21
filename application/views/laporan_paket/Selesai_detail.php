@@ -40,12 +40,34 @@
                                 </td>
                                 <td><?php echo $row->NAMA;?></td>
                                 <td>
-                                  <a type="button" style="font-size: 20px" href="#"><i class="fa fa-search-plus"></i></a>
+                                  <?php if($judulnya == 'IMB' || $judulnya == 'SKRK'): ?>
+                                    <a type="button" style="font-size: 20px" href="<?php echo base_url();?>laporan_paket/histori_detail_imb/<?php echo $tanggalnya;?>/<?php echo $row->NO_REGISTRASI;?>/<?php echo $judulnya;?>"><i class="fa fa-search-plus"></i></a>
+                                  <?php else: ?>
+                                     <a type="button" style="font-size: 20px" href="<?php echo base_url();?>laporan_paket/histori_detail/<?php echo $tanggalnya;?>/<?php echo $row->NO_REGISTRASI;?>"><i class="fa fa-search-plus"></i></a>
+                                  <?php endif;?>
                                 </td>
                                 <td><?php echo $row->ALAMAT;?></td>
                                 <td><?php echo $row->NAMA_PERUSAHAAN;?></td>
                                  <td><?php echo $row->ALAMAT_PT;?></td>
-                                <td> Hari kerja
+                                <td>
+                                  <?php 
+                                  if ($judulnya == 'IMB' ||$judulnya == 'SKRK' ) {
+                                    $prosesnya = $this->mlaporan_paket->get_waktu_selesai($tgl_mulai,$tgl_akhir,$row->NO_REGISTRASI,$judulnya);
+                                    if (!$prosesnya) {
+                                      echo "0";
+                                    }
+                                    else{
+                                      foreach ($prosesnya as $key) {
+                                        echo $key->TOTAL;}
+                                    }
+                                  }
+                                  else{
+                                    $prosesnya = $this->mlaporan_paket->get_waktu_selesai($tgl_mulai,$tgl_akhir,$row->NO_REGISTRASI);
+                                    foreach ($prosesnya as $key) {
+                                      echo $key->TOTAL;}
+                                  }
+                                  ?> 
+                                  Hari kerja
                                 </td>
                                 <td><?php echo "TIDAK ADA"; $a++;?></td>
                               </tr>

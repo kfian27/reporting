@@ -56,25 +56,25 @@
 			return $query->result();
         }
     	function get_dashboard_pending($tahun='',$uptd='',$ijin='',$bulan=''){
-        	$sql = "SELECT no_bulan, Bulan, Tahun, COUNT( Bulan ) as total FROM ( SELECT TO_CHAR( DATA_PEMOHON.TGL_OL, 'Month' ) AS Bulan, TO_CHAR( DATA_PEMOHON.TGL_OL, 'mm' ) AS no_bulan, TO_CHAR( DATA_PEMOHON.TGL_OL, 'yyyy' ) AS Tahun, KD_SKPD, NM_HEADER FROM DATA_PEMOHON, MIJIN, ONLINE_SIMTAP WHERE DATA_PEMOHON.KD_IJIN = MIJIN.KD_IJIN AND ONLINE_SIMTAP.NO_OL = DATA_PEMOHON.NO_OL AND TO_CHAR(DATA_PEMOHON.TGL_OL,'ddmmyyyy') = TO_CHAR(ONLINE_SIMTAP.TGL_OL,'ddmmyyyy') AND KD_SKPD like '%$uptd%' AND KD_SKPD NOT LIKE '1$uptd' AND NM_HEADER LIKE '%$ijin%' AND ID_ALUR_PROSES = 9 AND STS_TOLAK IS NULL) WHERE Tahun = '$tahun' AND no_bulan like '%$bulan' AND no_bulan NOT like '1$bulan' GROUP BY no_bulan, Bulan, Tahun ORDER BY no_bulan ASC";
+        	$sql = "SELECT no_bulan, Bulan, Tahun, COUNT( Bulan ) as total FROM ( SELECT TO_CHAR( DATA_PEMOHON.TGL_OL, 'Month' ) AS Bulan, TO_CHAR( DATA_PEMOHON.TGL_OL, 'mm' ) AS no_bulan, TO_CHAR( DATA_PEMOHON.TGL_OL, 'yyyy' ) AS Tahun, KD_SKPD, NM_HEADER FROM DATA_PEMOHON, MIJIN, ONLINE_SIMTAP WHERE DATA_PEMOHON.KD_IJIN = MIJIN.KD_IJIN AND ONLINE_SIMTAP.NO_OL = DATA_PEMOHON.NO_OL AND TO_CHAR(DATA_PEMOHON.TGL_OL,'ddmmyyyy') = TO_CHAR(ONLINE_SIMTAP.TGL_OL,'ddmmyyyy') AND KD_SKPD like '%$uptd%' AND KD_SKPD NOT LIKE '1$uptd' AND KD_SKPD NOT LIKE '2$uptd' AND NM_HEADER LIKE '%$ijin%' AND ID_ALUR_PROSES = 9 AND STS_TOLAK IS NULL) WHERE Tahun = '$tahun' AND no_bulan like '%$bulan' AND no_bulan NOT like '1$bulan' GROUP BY no_bulan, Bulan, Tahun ORDER BY no_bulan ASC";
 
 			$query = $this->db->query($sql);
 			return $query->result();
         }
         function get_dashboard_selesai($tahun='',$uptd='',$ijin='',$bulan=''){
-        	$sql = "SELECT no_bulan, Bulan, Tahun, COUNT( Bulan ) as total FROM ( SELECT TO_CHAR( DATA_PEMOHON.TGL_OL, 'Month' ) AS Bulan, TO_CHAR( DATA_PEMOHON.TGL_OL, 'mm' ) AS no_bulan, TO_CHAR( DATA_PEMOHON.TGL_OL, 'yyyy' ) AS Tahun, KD_SKPD, NM_HEADER FROM DATA_PEMOHON, MIJIN, ONLINE_SIMTAP WHERE DATA_PEMOHON.KD_IJIN = MIJIN.KD_IJIN AND ONLINE_SIMTAP.NO_OL = DATA_PEMOHON.NO_OL AND TO_CHAR(DATA_PEMOHON.TGL_OL,'ddmmyyyy') = TO_CHAR(ONLINE_SIMTAP.TGL_OL,'ddmmyyyy') AND KD_SKPD like '%$uptd%' AND KD_SKPD NOT LIKE '1$uptd' AND NM_HEADER LIKE '%$ijin%' AND ID_ALUR_PROSES IN (5, 6) AND STS_TOLAK IS NULL ) WHERE Tahun = '$tahun' AND no_bulan like '%$bulan' AND no_bulan NOT like '1$bulan' GROUP BY no_bulan, Bulan, Tahun ORDER BY no_bulan ASC";
+        	$sql = "SELECT no_bulan, Bulan, Tahun, COUNT( Bulan ) as total FROM ( SELECT TO_CHAR( DATA_PEMOHON.TGL_OL, 'Month' ) AS Bulan, TO_CHAR( DATA_PEMOHON.TGL_OL, 'mm' ) AS no_bulan, TO_CHAR( DATA_PEMOHON.TGL_OL, 'yyyy' ) AS Tahun, KD_SKPD, NM_HEADER FROM DATA_PEMOHON, MIJIN, ONLINE_SIMTAP WHERE DATA_PEMOHON.KD_IJIN = MIJIN.KD_IJIN AND ONLINE_SIMTAP.NO_OL = DATA_PEMOHON.NO_OL AND TO_CHAR(DATA_PEMOHON.TGL_OL,'ddmmyyyy') = TO_CHAR(ONLINE_SIMTAP.TGL_OL,'ddmmyyyy') AND KD_SKPD like '%$uptd%' AND KD_SKPD NOT LIKE '1$uptd' AND KD_SKPD NOT LIKE '2$uptd' AND NM_HEADER LIKE '%$ijin%' AND ID_ALUR_PROSES IN (5, 6) AND STS_TOLAK IS NULL ) WHERE Tahun = '$tahun' AND no_bulan like '%$bulan' AND no_bulan NOT like '1$bulan' GROUP BY no_bulan, Bulan, Tahun ORDER BY no_bulan ASC";
 
 			$query = $this->db->query($sql);
 			return $query->result();
         }
         function get_dashboard_proses($tahun='',$uptd='',$ijin='',$bulan=''){
-        	$sql = "SELECT no_bulan, Bulan, Tahun, COUNT( Bulan ) as total FROM ( SELECT TO_CHAR( DATA_PEMOHON.TGL_OL, 'Month' ) AS Bulan, TO_CHAR( DATA_PEMOHON.TGL_OL, 'mm' ) AS no_bulan, TO_CHAR( DATA_PEMOHON.TGL_OL, 'yyyy' ) AS Tahun, KD_SKPD, NM_HEADER FROM DATA_PEMOHON, MIJIN, ONLINE_SIMTAP WHERE DATA_PEMOHON.KD_IJIN = MIJIN.KD_IJIN AND ONLINE_SIMTAP.NO_OL = DATA_PEMOHON.NO_OL AND TO_CHAR(DATA_PEMOHON.TGL_OL,'ddmmyyyy') = TO_CHAR(ONLINE_SIMTAP.TGL_OL,'ddmmyyyy') AND KD_SKPD like '%$uptd%' AND KD_SKPD NOT LIKE '1$uptd' AND NM_HEADER LIKE '%$ijin%' AND ID_ALUR_PROSES NOT IN (5, 6, 9, 100) AND STS_TOLAK IS NULL) WHERE Tahun = '$tahun' AND no_bulan like '%$bulan' AND no_bulan NOT like '1$bulan' GROUP BY no_bulan, Bulan, Tahun ORDER BY no_bulan ASC";
+        	$sql = "SELECT no_bulan, Bulan, Tahun, COUNT( Bulan ) as total FROM ( SELECT TO_CHAR( DATA_PEMOHON.TGL_OL, 'Month' ) AS Bulan, TO_CHAR( DATA_PEMOHON.TGL_OL, 'mm' ) AS no_bulan, TO_CHAR( DATA_PEMOHON.TGL_OL, 'yyyy' ) AS Tahun, KD_SKPD, NM_HEADER FROM DATA_PEMOHON, MIJIN, ONLINE_SIMTAP WHERE DATA_PEMOHON.KD_IJIN = MIJIN.KD_IJIN AND ONLINE_SIMTAP.NO_OL = DATA_PEMOHON.NO_OL AND TO_CHAR(DATA_PEMOHON.TGL_OL,'ddmmyyyy') = TO_CHAR(ONLINE_SIMTAP.TGL_OL,'ddmmyyyy') AND KD_SKPD like '%$uptd%' AND KD_SKPD NOT LIKE '1$uptd' AND KD_SKPD NOT LIKE '2$uptd' AND NM_HEADER LIKE '%$ijin%' AND ID_ALUR_PROSES NOT IN (5, 6, 9, 100) AND STS_TOLAK IS NULL) WHERE Tahun = '$tahun' AND no_bulan like '%$bulan' AND no_bulan NOT like '1$bulan' GROUP BY no_bulan, Bulan, Tahun ORDER BY no_bulan ASC";
 
 			$query = $this->db->query($sql);
 			return $query->result();
         }
         function get_dashboard_tolak($tahun='',$uptd='',$ijin='',$bulan=''){
-        	$sql = "SELECT no_bulan, Bulan, Tahun, COUNT( Bulan ) as total FROM ( SELECT TO_CHAR( DATA_PEMOHON.TGL_OL, 'Month' ) AS Bulan, TO_CHAR( DATA_PEMOHON.TGL_OL, 'mm' ) AS no_bulan, TO_CHAR( DATA_PEMOHON.TGL_OL, 'yyyy' ) AS Tahun, KD_SKPD, NM_HEADER FROM DATA_PEMOHON, MIJIN, ONLINE_SIMTAP WHERE DATA_PEMOHON.KD_IJIN = MIJIN.KD_IJIN AND ONLINE_SIMTAP.NO_OL = DATA_PEMOHON.NO_OL AND TO_CHAR(DATA_PEMOHON.TGL_OL,'ddmmyyyy') = TO_CHAR(ONLINE_SIMTAP.TGL_OL,'ddmmyyyy') AND KD_SKPD like '%$uptd%' AND KD_SKPD NOT LIKE '1$uptd' AND NM_HEADER LIKE '%$ijin%' AND STS_TOLAK IS NOT NULL AND ID_ALUR_PROSES != 100 ) WHERE Tahun = '$tahun' AND no_bulan like '%$bulan' AND no_bulan NOT like '1$bulan' GROUP BY no_bulan, Bulan, Tahun ORDER BY no_bulan ASC";
+        	$sql = "SELECT no_bulan, Bulan, Tahun, COUNT( Bulan ) as total FROM ( SELECT TO_CHAR( DATA_PEMOHON.TGL_OL, 'Month' ) AS Bulan, TO_CHAR( DATA_PEMOHON.TGL_OL, 'mm' ) AS no_bulan, TO_CHAR( DATA_PEMOHON.TGL_OL, 'yyyy' ) AS Tahun, KD_SKPD, NM_HEADER FROM DATA_PEMOHON, MIJIN, ONLINE_SIMTAP WHERE DATA_PEMOHON.KD_IJIN = MIJIN.KD_IJIN AND ONLINE_SIMTAP.NO_OL = DATA_PEMOHON.NO_OL AND TO_CHAR(DATA_PEMOHON.TGL_OL,'ddmmyyyy') = TO_CHAR(ONLINE_SIMTAP.TGL_OL,'ddmmyyyy') AND KD_SKPD like '%$uptd%' AND KD_SKPD NOT LIKE '1$uptd' AND KD_SKPD NOT LIKE '2$uptd' AND NM_HEADER LIKE '%$ijin%' AND STS_TOLAK IS NOT NULL AND ID_ALUR_PROSES != 100 ) WHERE Tahun = '$tahun' AND no_bulan like '%$bulan' AND no_bulan NOT like '1$bulan' GROUP BY no_bulan, Bulan, Tahun ORDER BY no_bulan ASC";
 
 			$query = $this->db->query($sql);
 			return $query->result();
@@ -86,13 +86,13 @@
 			return $query->result();
         }
         function get_nm_ijin($param1){
-        	$sql = "SELECT NM_HEADER AS NAMA_HEADER from MIJIN WHERE KD_SKPD like '%$param1%' AND KD_SKPD NOT LIKE '1$param1' GROUP BY NM_HEADER ORDER BY NM_HEADER";
+        	$sql = "SELECT NM_HEADER AS NAMA_HEADER from MIJIN WHERE KD_SKPD like '%$param1%' AND KD_SKPD NOT LIKE '1$param1' AND KD_SKPD NOT LIKE '2$param1' GROUP BY NM_HEADER ORDER BY NM_HEADER";
 
 			$query = $this->db->query($sql);
 			return $query->result();
         }
         function get_tanggal($tgl1 ='',$tgl2 ='',$param1=''){
-        	$sql = "SELECT NM_HEADER, COUNT(NM_HEADER) AS jumlahnya FROM (SELECT NM_HEADER, DATA_PEMOHON.TGL_OL, KD_SKPD FROM DATA_PEMOHON, MIJIN, ONLINE_SIMTAP WHERE MIJIN.KD_IJIN = DATA_PEMOHON.KD_IJIN AND DATA_PEMOHON.NO_OL = ONLINE_SIMTAP.NO_OL AND TO_CHAR(DATA_PEMOHON.TGL_OL,'ddmmyyyy') = TO_CHAR(ONLINE_SIMTAP.TGL_OL,'ddmmyyyy') AND DATA_PEMOHON.TGL_OL BETWEEN TO_DATE('$tgl1', 'yyyy-mm-dd') AND TO_DATE('$tgl2', 'yyyy-mm-dd') AND KD_SKPD LIKE '%$param1' AND KD_SKPD NOT LIKE '1$param1' AND ID_ALUR_PROSES != 100 ) where NM_HEADER!=' ' GROUP BY NM_HEADER ORDER BY NM_HEADER";
+        	$sql = "SELECT NM_HEADER, COUNT(NM_HEADER) AS jumlahnya FROM (SELECT NM_HEADER, DATA_PEMOHON.TGL_OL, KD_SKPD FROM DATA_PEMOHON, MIJIN, ONLINE_SIMTAP WHERE MIJIN.KD_IJIN = DATA_PEMOHON.KD_IJIN AND DATA_PEMOHON.NO_OL = ONLINE_SIMTAP.NO_OL AND TO_CHAR(DATA_PEMOHON.TGL_OL,'ddmmyyyy') = TO_CHAR(ONLINE_SIMTAP.TGL_OL,'ddmmyyyy') AND DATA_PEMOHON.TGL_OL BETWEEN TO_DATE('$tgl1', 'yyyy-mm-dd') AND TO_DATE('$tgl2', 'yyyy-mm-dd') AND KD_SKPD LIKE '%$param1' AND KD_SKPD NOT LIKE '1$param1' AND KD_SKPD NOT LIKE '2$param1' AND ID_ALUR_PROSES != 100 ) where NM_HEADER!=' ' GROUP BY NM_HEADER ORDER BY NM_HEADER";
 
 			$query = $this->db->query($sql);
 			return $query->result();
@@ -139,8 +139,8 @@
 			$query = $this->db->query($sql);
 			return $query->result();
         }
-        function get_nama_proses(){
-        	$sql = "SELECT * from TEMPLATE_M_ALUR_PROSES WHERE ID_ALUR_PROSES NOT IN(5,6,9,100) ORDER by ID_ALUR_PROSES ASC";
+        function get_nama_proses($param1=''){
+        	$sql = "SELECT DISTINCT NAMA_ALUR_PROSES FROM TEMPLATE_D_ALUR_PROSES, TEMPLATE_M_ALUR_PROSES WHERE TEMPLATE_D_ALUR_PROSES.ID_ALUR_PROSES = TEMPLATE_M_ALUR_PROSES.ID_ALUR_PROSES AND ID_PERIJINAN = '$param1' AND URUT >= 1 AND URUT <= ( SELECT MAX (URUT) - 2 FROM TEMPLATE_D_ALUR_PROSES, TEMPLATE_M_ALUR_PROSES WHERE TEMPLATE_D_ALUR_PROSES.ID_ALUR_PROSES = TEMPLATE_M_ALUR_PROSES.ID_ALUR_PROSES AND ID_PERIJINAN = '$param1' ) ORDER BY NAMA_ALUR_PROSES ASC";
 
 			$query = $this->db->query($sql);
 			return $query->result();

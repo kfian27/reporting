@@ -1,4 +1,9 @@
-      <?php $this->load->model('mlaporan'); ?>
+      <?php $this->load->model('mlaporan_paket');
+        $judulnya= '';
+        foreach ($judul as $key) {
+          $judulnya = $key->KETERANGAN;
+        }
+      ?>
       <div class="right_col" role="main" id="view">
         <div class="">
           <div class="row">
@@ -6,12 +11,12 @@
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h1>Laporan Tahunan Perizinan/Non Perizinan SSW Parsial/Mandiri</h1>
+                    <h1>Laporan Tahunan Perizinan/Non Perizinan SSW Paket</h1>
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
                   <div class="col-md-12 col-sm-12 col-xs-12">
-                    <form class="form-horizontal" action="<?php echo base_url(); ?>laporan_mandiri/grafik_tahunan" method="POST">
+                    <form class="form-horizontal" method="POST">
                       <div class="col-md-12 col-sm-12 col-xs-12 form-group"> <!-- Date input -->
                         <label for="tiga" class="col-sm-4 control-label" style="text-align: left;"> Tahun Berkas Masuk </label>
                         <div class="col-md-8 col-sm-12 col-xs-12">
@@ -24,34 +29,25 @@
                         </div>
                       </div>
                       <div class="col-md-12 col-sm-12 col-xs-12 form-group"> <!-- Date input -->
-                        <label for="tiga" class="col-sm-4 control-label" style="text-align: left;"> Perangkat Daerah </label>
+                        <label for="tiga" class="col-sm-4 control-label" style="text-align: left;"> Pilih Paket </label>
                         <div class="col-md-8 col-sm-12 col-xs-12">
-                          <select id="uptd" name="uptd" class="form-control" placeholder="Lokasi" required="required">
-                            <option value="">--Nama perangkat daerah--</option>
+                          <select id="paket" name="paket" class="form-control" required="required">
+                            <option value="">--Pilih Paket--</option>
                             <option value="%">Semua</option>
-                            <?php  foreach ($nama_skpd as $row): ?>
-                              <option value="<?php echo $row->KD_SKPD; ?>"><?php echo $row->NAMA_SKPD; ?></option>
+                            <?php  foreach ($nama_paket as $row): ?>
+                              <option value="<?php echo $row->ID_PAKET; ?>"><?php echo $row->KETERANGAN; ?></option>
                             <?php endforeach; ?>
                           </select>
                         </div>
                       </div>
-                      <div class="col-md-12 col-sm-12 col-xs-12 form-group"> <!-- Date input -->
-                        <label for="tiga" class="col-sm-4 control-label" style="text-align: left;"> Nama Perizinan/Non Perizinan </label>
-                        <div class="col-md-8 col-sm-12 col-xs-12">
-                          <select id="ijinnya" name="ijinnya" class="form-control" placeholder="Ijin" required="required">
-                            <!-- <option value="">-- Ijin --</option> -->
-                          </select>
-                        </div>
-                      </div>
                       <div class="col-md-12 col-sm-12 col-xs-12"> <!-- Submit button -->
-                          <button class="btn btn-default col-md-12 col-sm-12 col-xs-12" id="pdfhr" type="submit"><i class="fa fa-search"></i> Search</button>
+                          <a class="btn btn-default col-md-12 col-sm-12 col-xs-12" onclick="coba_alert()" id="pdfhr"><i class="fa fa-search"></i> Search</a>
                         </div>
                     </form>
                   </div>
                   <div class="col-md-1 col-sm-12 col-xs-12"></div>
                   <div class="col-md-9 col-sm-12 col-xs-12 form-group">
                     <canvas id="graph1" height="200px;"></canvas>
-                      <!-- <button id="save-btn">Save Chart Image</button> -->
                     </div>
                   </div>
                 </div>
@@ -62,81 +58,81 @@
         <?php
             $labelnya = array("Januari", "Februari", "Maret", "April", "Mei","Juni","Juli","Agustus","September","Oktober","November","Desember");
             for ($b=1; $b < 13 ; $b++) { 
-              $dash_pending = $this->mlaporan->get_dashboard_pending($tahunnya,$skpdnya,$judul_grafik,$b);
-              $dash_proses = $this->mlaporan->get_dashboard_proses($tahunnya,$skpdnya,$judul_grafik,$b);
-              $dash_tolak = $this->mlaporan->get_dashboard_tolak($tahunnya,$skpdnya,$judul_grafik,$b);
-              $dash_selesai = $this->mlaporan->get_dashboard_selesai($tahunnya,$skpdnya,$judul_grafik,$b);
+              $dash_selesai = $this->mlaporan_paket->get_dasboard_imb_selesai($tahunnya,$judul_grafik,$b);
+              $dash_proses = $this->mlaporan_paket->get_dasboard_imb_proses($tahunnya,$judul_grafik,$b);
+              $dash_pending = $this->mlaporan_paket->get_dasboard_imb_pending($tahunnya,$judul_grafik,$b);
+              $dash_tolak = $this->mlaporan_paket->get_dasboard_imb_tolak($tahunnya,$judul_grafik,$b);
               if (!$dash_selesai) {
                 $datanya[] = 0;
               }
               else{
                 foreach ($dash_selesai as $row) {
-                  $datanya[] = (float) $row->TOTAL;
+                  $datanya[] = (float) $row->JUMLAHNYA;
                 }
               }
               if (!$dash_proses) {
                 $datanya1[] = 0;
               }
               else{
-                foreach ($dash_proses as $row1) {
-                  $datanya1[] = (float) $row1->TOTAL;
-                }
-              }
-              if (!$dash_tolak) {
-                $datanya2[] = 0;
-              }
-              else{
-                foreach ($dash_tolak as $row2) {
-                  $datanya2[] = (float) $row2->TOTAL;
+                foreach ($dash_proses as $row) {
+                  $datanya1[] = (float) $row->JUMLAHNYA;
                 }
               }
               if (!$dash_pending) {
+                $datanya2[] = 0;
+              }
+              else{
+                foreach ($dash_pending as $row) {
+                  $datanya2[] = (float) $row->JUMLAHNYA;
+                }
+              }
+              if (!$dash_tolak) {
                 $datanya3[] = 0;
               }
               else{
-                foreach ($dash_pending as $row3) {
-                  $datanya3[] = (float) $row3->TOTAL;
+                foreach ($dash_tolak as $row) {
+                  $datanya3[] = (float) $row->JUMLAHNYA;
                 }
               }
             }
         ?>
         <script src="<?php echo base_url();?>assets/dash/vendors/Chart.js/dist/Chart.min.js"></script>
         <script type="text/javascript">
-          $("#uptd").change(function(){
-            var post_url = '<?php echo base_url(); ?>Laporan/getByDeviceId'
-            var uptdnya = $(this).val();
-            $.ajax({
-                method: 'post',
-                url: post_url,
-                data : {uptdnya:uptdnya},
-                dataType: 'json',
-                success: function(response){
-                  $('#ijinnya').html(response.list_ijin).show();
-                }
-            });
-          });
+          function coba_alert(){
+            var satu = $('#tahun_masuk').val();
+            var empat = $('#paket').val();
+            if (empat == 20) {
+               window.location = "<?php echo base_url();?>laporan_paket/grafik_tahunan_imb/"+satu+"/"+empat;
+            }
+            else if(empat == 23 || empat ==30){
+              window.location = "<?php echo base_url();?>laporan_paket/grafik_tahunan/"+satu+"/"+empat
+            }
+            else {
+              window.location = "<?php echo base_url();?>laporan_paket/grafik_tahunan_gabungan/"+satu+"/"+empat;
+            }
+          }
           var ctx = document.getElementById("graph1");
           var config = {
             type: 'bar',
             data: {
               labels: <?php echo json_encode($labelnya);?>,
-              datasets: [{
-                label: 'Selesai',
+              datasets: [{label: 'Selesai',
                 backgroundColor: "#00e600",
                 data: <?php echo json_encode($datanya);?>
-                },{
+                },
+                {
                 label: 'Proses',
                 backgroundColor: "#0066ff",
                 data: <?php echo json_encode($datanya1);?>
                 },
                 {
-                label: 'Ditolak',
-                backgroundColor: "#ff1a1a",
+                label: 'Pending',
+                backgroundColor: "#ff9933",
                 data: <?php echo json_encode($datanya2);?>
                 },
                 {
-                label: 'Pending',
-                backgroundColor: "#ff9933",
+                label: 'Ditolak',
+                backgroundColor: "#ff1a1a",
                 data: <?php echo json_encode($datanya3);?>
                 }
               ]
@@ -145,7 +141,7 @@
               title: {
                 display: true,
                 fontSize: 14,
-                text:'Berkas Masuk <?php echo $judul_grafik." ".$tahunnya;?>'
+                text:'Berkas Masuk <?php echo $judulnya." ".$tahunnya;?>'
               },
               tooltips: {
                 mode: 'label'
@@ -161,13 +157,6 @@
               legend: {
                 display: true
               },
-              // tooltips: {
-              //   callbacks: {
-              //     label: function(tooltipItem) {
-              //        return tooltipItem.yLabel;
-              //     }
-              //   }
-              // }
             }
           };
           var newChart = new Chart(ctx, config);

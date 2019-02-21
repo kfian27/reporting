@@ -13,7 +13,7 @@
               <h1>Dashboard Perizinan/Non-Perizinan SSW</h1>
               <div class="clearfix"></div>
            </div>
-            <a href="<?php echo base_url(); ?>admin/laporan_mandiri">
+            <a href="<?php echo base_url(); ?>laporan_mandiri">
               <div class="col-md-6 col-sm-12 col-xs-12">
                 <div class="tile-stats" style="background-color: #5bc0de; border-color: #5bc0de;">
                   <div class="icon" style="color: #fbfbfb"> <i class="fa fa-file" style="margin-left: 5px;"></i></div>
@@ -23,7 +23,7 @@
                 </div>
               </div>
             </a>
-            <a href="<?php echo base_url(); ?>admin/laporan_paket">
+            <a href="<?php echo base_url(); ?>laporan_paket">
               <div class="col-md-6 col-sm-12 col-xs-12">
                 <div class="tile-stats" style="background-color: #5bc0de; border-color: #5bc0de;">
                   <div class="icon" style="color: #fbfbfb"> <i class="fa fa-file" style="margin-left: 5px;"></i></div>

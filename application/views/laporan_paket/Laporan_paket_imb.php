@@ -1,6 +1,6 @@
       <?php 
-        $jumlah_skrk = 0; foreach ($skrknya as $key) {$jumlah_skrk = $key->JUMLAH;}
-        $jumlah_imb = 0; foreach ($imbnya as $key) {$jumlah_imb = $key->JUMLAH;}
+        $selesainya_skrk = 0; foreach ($skrknya as $key) {$selesainya_skrk = $key->JUMLAH;}
+        $selesainya_imb = 0; foreach ($imbnya as $key) {$selesainya_imb = $key->JUMLAH;}
         $prosesnya_imb = 0; foreach ($proses_imb as $key) {$prosesnya_imb = $key->JUMLAH;}
         $prosesnya_skrk = 0; foreach ($proses_skrk as $key) {$prosesnya_skrk = $key->JUMLAH;}
         $pendingnya_imb = 0; foreach ($pending_imb as $key) {$pendingnya_imb = $key->JUMLAH;}
@@ -54,105 +54,6 @@
                       </div>
                     </form>
                     <br />
-  ini proses
-  <code>SELECT
-COUNT( NO_REGISTRASI )
-FROM
-(
-SELECT DISTINCT
-* 
-FROM
-(
-SELECT
-ID_CKTR,
-REGISTER_ULANG.NO_REGISTRASI,
-NAMA 
-FROM
-REGISTER_ULANG,
-T_FO_REG_ULANG,
-T_FO 
-WHERE
-REGISTER_ULANG.NO_REGISTRASI = T_FO_REG_ULANG.NO_REGISTRASI 
-AND REGISTER_ULANG.TGL_REG = T_FO_REG_ULANG.TGL_REGISTRASI 
-AND REGISTER_ULANG.NO_REGISTRASI = T_FO.NO_REGISTRASI 
-AND REGISTER_ULANG.TGL_REG = T_FO.TGL_REGISTRASI 
-AND REGISTER_ULANG.REG_KE IN T_FO_REG_ULANG.REG_KE 
-AND TGL_REG BETWEEN TO_DATE( '2019-01-01', 'yyyy-mm-dd' ) 
-AND TO_DATE( '2019-01-31', 'yyyy-mm-dd' ) 
-AND REGISTER_ULANG.PERIJINAN = 'IMB' 
-AND ID_PAKET = '20' 
-) a 
-WHERE
-ID_CKTR = ( SELECT ID_CKTR FROM ( SELECT * FROM REGISTER_ULANG WHERE REGISTER_ULANG.NO_REGISTRASI = a.NO_REGISTRASI ORDER BY ID_CKTR DESC ) WHERE ROWNUM = 1 ) 
-ORDER BY
-NO_REGISTRASI ASC 
-)</code>
-  <br>
-  ini pending
-  <code>SELECT
-COUNT( NO_REGISTRASI )
-FROM
-(
-SELECT DISTINCT
-* 
-FROM
-(
-SELECT
-ID_CKTR,
-REGISTER_ULANG.NO_REGISTRASI,
-NAMA 
-FROM
-REGISTER_ULANG,
-T_FO_REG_ULANG,
-T_FO 
-WHERE
-REGISTER_ULANG.NO_REGISTRASI = T_FO_REG_ULANG.NO_REGISTRASI 
-AND REGISTER_ULANG.TGL_REG = T_FO_REG_ULANG.TGL_REGISTRASI 
-AND REGISTER_ULANG.NO_REGISTRASI = T_FO.NO_REGISTRASI 
-AND REGISTER_ULANG.TGL_REG = T_FO.TGL_REGISTRASI 
-AND REGISTER_ULANG.REG_KE NOT IN T_FO_REG_ULANG.REG_KE 
-AND TGL_REG BETWEEN TO_DATE( '2019-01-01', 'yyyy-mm-dd' ) 
-AND TO_DATE( '2019-01-31', 'yyyy-mm-dd' ) 
-AND REGISTER_ULANG.PERIJINAN = 'IMB' 
-AND ID_PAKET = '20' 
-) a 
-WHERE
-ID_CKTR = ( SELECT ID_CKTR FROM ( SELECT * FROM REGISTER_ULANG WHERE REGISTER_ULANG.NO_REGISTRASI = a.NO_REGISTRASI ORDER BY ID_CKTR DESC ) WHERE ROWNUM = 1 ) 
-ORDER BY
-NO_REGISTRASI ASC 
-)</code>
-  <br>
-  ini selesai
-<code>SELECT
-  COUNT (
-    VW_SKRK_DETIL.NO_REGISTRASI
-  ) AS jumlah
-FROM
-  VW_SKRK_DETIL,
-  T_FO
-WHERE
-  VW_SKRK_DETIL.NO_REGISTRASI = T_FO.NO_REGISTRASI
-AND VW_SKRK_DETIL.TGL_REGISTRASI = T_FO.TGL_REGISTRASI
-AND VW_SKRK_DETIL.STATUS LIKE 'PENGESAHAN SK'
-AND VW_SKRK_DETIL.TGL_REGISTRASI BETWEEN TO_DATE ('2019-01-01', 'yyyy-mm-dd')
-AND TO_DATE ('2019-01-31', 'yyyy-mm-dd')
-AND ID_PAKET = '20''</code>
-<br>
-ini tolak
-<code>SELECT
-  COUNT (
-    VW_SKRK_DETIL.NO_REGISTRASI
-  ) AS jumlah
-FROM
-  VW_SKRK_DETIL,
-  T_FO
-WHERE
-  VW_SKRK_DETIL.NO_REGISTRASI = T_FO.NO_REGISTRASI
-AND VW_SKRK_DETIL.TGL_REGISTRASI = T_FO.TGL_REGISTRASI
-AND VW_SKRK_DETIL.STATUS LIKE 'DITOLAK'
-AND VW_SKRK_DETIL.TGL_REGISTRASI BETWEEN TO_DATE ('2019-01-01', 'yyyy-mm-dd')
-AND TO_DATE ('2019-01-31', 'yyyy-mm-dd')
-AND ID_PAKET = '20''</code>
                     <div class="table-responsive">
                           <table id="coba-table" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
                             <thead>
@@ -167,38 +68,33 @@ AND ID_PAKET = '20''</code>
                               </tr>
                             </thead>
                             <tbody>
-                              <?php $total_array = count($hasilnya);$jumlah_total=0;$b=0; $a=1;
-                              foreach ($hasilnya as $row){
-                                if($b < $total_array - 2 ) {
-                                  $jumlah_total = $jumlah_total + $row->JUMLAHNYA;
-                                  $b++;
-                                }
-                                elseif($b < $total_array - 1){
-                                  $jumlah_total = $prosesnya_imb + $pendingnya_imb + $tolaknya_imb + $jumlah_imb;
-                                  echo "<tr>
-                                    <td>".$a."</td>
-                                    <td>".$row->NAMA_IJIN."</a></td>
-                                    <td><a type='button' data-title='button' class='btn btn-primary pull-right' href='".base_url()."admin/proses_paket_detail/".$tgl_mulai."/".$tgl_akhir."/20/IMB/".$prosesnya_imb."'>".$prosesnya_imb."</a></td>
-                                    <td><a type='button' data-title='button' class='btn btn-primary pull-right' href='".base_url()."admin/pending_paket_detail/".$tgl_mulai."/".$tgl_akhir."/20/IMB/".$pendingnya_imb."'>".$pendingnya_imb."</a></td>
-                                    <td>".$tolaknya_imb."</td>
-                                    <td><a type='button' data-title='button' class='btn btn-primary pull-right' href='".base_url()."admin/selesai_paket_detail/".$tgl_mulai."/".$tgl_akhir."/20/IMB/".$jumlah_imb."'>".$jumlah_imb."</a></td>
-                                    <td>".$jumlah_total."</td>
-                                </tr>";
-                                $a++;$b++;
-                                }
-                                else{
-                                  $jumlah_total = $prosesnya_skrk + $pendingnya_skrk + $tolaknya_skrk + $jumlah_skrk;
-                                  echo "<tr>
-                                    <td>".$a."</td>
-                                    <td>".$row->NAMA_IJIN."</td>
-                                    <td><a type='button' data-title='button' class='btn btn-primary pull-right' href='".base_url()."admin/proses_paket_detail/".$tgl_mulai."/".$tgl_akhir."/20/SKRK/".$prosesnya_skrk."'>".$prosesnya_skrk."</a></td>
-                                    <td><a type='button' data-title='button' class='btn btn-primary pull-right' href='".base_url()."admin/pending_paket_detail/".$tgl_mulai."/".$tgl_akhir."/20/SKRK/".$pendingnya_skrk."'>".$pendingnya_skrk."</a></td>
-                                    <td>".$tolaknya_skrk."</td>
-                                    <td><a type='button' data-title='button' class='btn btn-primary pull-right' href='".base_url()."admin/selesai_paket_detail/".$tgl_mulai."/".$tgl_akhir."/20/SKRK/".$jumlah_skrk."'>".$jumlah_skrk."</a></td>
-                                    <td>".$jumlah_total."</td>
-                                  </tr>";
-                                }
-                              }?>
+                              <?php $a=1; foreach ($hasilnya as $row): ?>
+                              <tr>
+                                  <td><?php echo $a; ?></td>
+                                  <td><?php $JUMLAHNYA = $row->JUMLAH; $nama_headernya = $row->NM_HEADER; echo $row->NM_HEADER;?></td>
+                                  <td><?php if($a==1){?>
+                                   <a type='button' data-title='button' href='<?php echo base_url();?>laporan_paket/proses_detail/<?php echo $tgl_mulai;?>/<?php echo $tgl_akhir;?>/<?php echo $paketnya;?>/IMB/<?php echo $prosesnya_imb;?>' <?php if($prosesnya_imb==0)echo "class='btn btn-default pull-right' disabled";else echo "class='btn btn-primary pull-right'";?>><?php echo $prosesnya_imb;?></a><?php }
+                                    else{?>
+                                   <a type='button' data-title='button' href='<?php echo base_url();?>laporan_paket/proses_detail/<?php echo $tgl_mulai;?>/<?php echo $tgl_akhir;?>/<?php echo $paketnya;?>/SKRK/<?php echo $prosesnya_skrk;?>' <?php if($prosesnya_skrk==0)echo "class='btn btn-default pull-right' disabled";else echo "class='btn btn-primary pull-right'";?>><?php echo $prosesnya_skrk;?></a><?php }?>
+                                  </td>
+                                 <td><?php if($a==1){?>
+                                   <a type='button' data-title='button' href='<?php echo base_url();?>laporan_paket/pending_detail/<?php echo $tgl_mulai;?>/<?php echo $tgl_akhir;?>/<?php echo $paketnya;?>/IMB/<?php echo $pendingnya_imb;?>' <?php if($pendingnya_imb==0)echo "class='btn btn-default pull-right' disabled";else echo "class='btn btn-primary pull-right'";?>><?php echo $pendingnya_imb;?></a><?php }
+                                    else{?>
+                                   <a type='button' data-title='button' href='<?php echo base_url();?>laporan_paket/pending_detail/<?php echo $tgl_mulai;?>/<?php echo $tgl_akhir;?>/<?php echo $paketnya;?>/SKRK/<?php echo $pendingnya_skrk;?>' <?php if($pendingnya_skrk==0)echo "class='btn btn-default pull-right' disabled";else echo "class='btn btn-primary pull-right'";?>><?php echo $pendingnya_skrk;?></a><?php }?>
+                                  </td>
+                                  <td><?php if($a==1){?>
+                                   <a type='button' data-title='button' href='<?php echo base_url();?>tolak_detail/<?php echo $tgl_mulai;?>/<?php echo $tgl_akhir;?>/<?php echo $paketnya;?>/IMB/<?php echo $tolaknya_imb;?>' <?php if($tolaknya_imb==0)echo "class='btn btn-default pull-right' disabled";else echo "class='btn btn-primary pull-right'";?>><?php echo $tolaknya_imb;?></a><?php }
+                                    else{?>
+                                   <a type='button' data-title='button' href='<?php echo base_url();?>laporan_paket/tolak_detail/<?php echo $tgl_mulai;?>/<?php echo $tgl_akhir;?>/<?php echo $paketnya;?>/SKRK/<?php echo $tolaknya_skrk;?>' <?php if($tolaknya_skrk==0)echo "class='btn btn-default pull-right' disabled";else echo "class='btn btn-primary pull-right'";?>><?php echo $tolaknya_skrk;?></a><?php }?>
+                                  </td>
+                                  <td><?php if($a==1){?>
+                                   <a type='button' data-title='button' href='<?php echo base_url();?>laporan_paket/selesai_detail/<?php echo $tgl_mulai;?>/<?php echo $tgl_akhir;?>/<?php echo $paketnya;?>/IMB/<?php echo $selesainya_imb;?>' <?php if($selesainya_imb==0)echo "class='btn btn-default pull-right' disabled";else echo "class='btn btn-primary pull-right'";?>><?php echo $selesainya_imb;?></a><?php }
+                                    else{?>
+                                   <a type='button' data-title='button' href='<?php echo base_url();?>laporan_paket/selesai_detail/<?php echo $tgl_mulai;?>/<?php echo $tgl_akhir;?>/<?php echo $paketnya;?>/SKRK/<?php echo $selesainya_skrk;?>' <?php if($selesainya_skrk==0)echo "class='btn btn-default pull-right' disabled";else echo "class='btn btn-primary pull-right'";?>><?php echo $selesainya_skrk;?></a><?php }?>
+                                  </td>
+                                  <td><?php echo $JUMLAHNYA; $a++;?></td>
+                              </tr>
+                              <?php endforeach; ?>
                             </tbody>
                           </table>
                         </div>
@@ -216,13 +112,13 @@ AND ID_PAKET = '20''</code>
             var dua = $('#tgl_akhir').val();
             var empat = $('#paket').val();
             if (empat == 20) {
-               window.location = "<?php echo base_url();?>admin/laporan_paket_hasil_IMB/"+satu+"/"+dua+"/"+empat;
+               window.location = "<?php echo base_url();?>laporan_paket/hasil_IMB/"+satu+"/"+dua+"/"+empat;
             }
             else if(empat == 23 || empat ==30){
-              window.location = "<?php echo base_url();?>admin/laporan_paket_hasil/"+satu+"/"+dua+"/"+empat
+              window.location = "<?php echo base_url();?>laporan_paket/hasil/"+satu+"/"+dua+"/"+empat
             }
             else {
-              window.location = "<?php echo base_url();?>admin/laporan_paket_hasil_gabungan/"+satu+"/"+dua+"/"+empat;
+              window.location = "<?php echo base_url();?>laporan_paket/hasil_gabungan/"+satu+"/"+dua+"/"+empat;
             }
           }
           $(document).ready(function() {

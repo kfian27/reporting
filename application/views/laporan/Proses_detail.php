@@ -30,12 +30,12 @@
                           <table id="coba-table" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
                             <thead>
                               <tr>
-                                <th style="max-width: 10%;">NO</th>
-                                <th style="text-align: center; max-width: 25%;">NO PENDAFTARAN</th>
-                                <th style="text-align: center; max-width: 25%;">TANGGAL PENDAFTARAN</th>
-                                <th style="text-align: center; max-width: 25%;">NAMA PEMOHON</th>
-                                <th style="text-align: center; max-width: 25%;">STATUS BERKAS</th>
-                                <th style="text-align: center; max-width: 25%;"></th>
+                                <th width="10%">NO</th>
+                                <th style="text-align: center;" width="20%">NO PENDAFTARAN</th>
+                                <th style="text-align: center;" width="20%">TANGGAL PENDAFTARAN</th>
+                                <th style="text-align: center;" width="20%">NAMA PEMOHON</th>
+                                <th style="text-align: center;" width="20%">STATUS BERKAS</th>
+                                <th style="text-align: center;" width="10%"></th>
                                 <th>ALAMAT PEMOHON</th>
                                 <th>NAMA PERUSAHAAN</th>
                                 <th>ALAMAT PERUSAHAAN</th>
@@ -46,20 +46,41 @@
                             <tbody>
                               <?php $a=1; foreach ($hasilnya as $row): ?>
                               <tr>
-                                <td><?php echo $a; ?></td>
-                                <td><?php echo $row->NO_OL;?></td>
-                                <td><?php
+                                <td width="10%"><?php echo $a; ?></td>
+                                <td width="20%"><?php echo $row->NO_OL;?></td>
+                                <td width="20%"><?php
                                   $tanggalnya = date('Y-m-d', strtotime($row->TGL_OL));
                                   echo $this->mlaporan->tanggal_indo($tanggalnya);?>
                                 </td>
-                                <td><?php echo $row->NAMAPEMOHON;?></td>
-                                <td><?php echo $row->NAMA_ALUR_PROSES;?></td>
-                                <td>
-                                  <a type="button" style="font-size: 20px" href="<?php echo base_url();?>admin/histori_detail/<?php echo $tanggalnya;?>/<?php echo $row->NO_OL;?>"><i class="fa fa-search-plus"></i></a>
+                                <td width="20%"><?php echo $row->NAMAPEMOHON;?></td>
+                                <td width="20%"><?php echo $row->NAMA_ALUR_PROSES;?></td>
+                                <td width="10%">
+                                  <a type="button" style="font-size: 20px" href="<?php echo base_url();?>laporan_mandiri/histori_detail/<?php echo $tanggalnya;?>/<?php echo $row->NO_OL;?>"><i class="fa fa-search-plus"></i></a>
                                 </td>
-                                <td><?php echo $row->ALAMATPEMOHON;?></td>
-                                <td><?php echo $row->NAMA_PT;?></td>
-                                <td><?php echo $row->ALAMAT_PT;?></td>
+                                <td><?php 
+                                  if ($row->ALAMATPEMOHON == NULL || $row->ALAMATPEMOHON == 'JL' ) {
+                                    echo "tidak ada alamat pemohon";
+                                  }
+                                  else{
+                                    echo $row->ALAMATPEMOHON;
+                                  }
+                                  ?>
+                                  </td>
+                                <td><?php 
+                                  if ($row->NAMA_PT == NULL) {
+                                    echo "tidak ada nama perusahaan";
+                                  }
+                                  else{
+                                    echo $row->NAMA_PT;
+                                  };?></td>
+                                <td><?php 
+                                  if ($row->ALAMAT_PT == NULL) {
+                                    echo "tidak ada alamat perusahaan";
+                                  }
+                                  else{
+                                    echo $row->ALAMAT_PT;
+                                  }
+                                  ?></td>
                                 <td>
                                   <?php $prosesnya = $this->mlaporan->get_waktu_proses($tgl_mulai,$tgl_akhir,$row->NO_OL);
                                   foreach ($prosesnya as $key) {
@@ -106,8 +127,7 @@
                   title: '-<?php echo $judulnya; ?>-',
                   className: "btn-sm"
                 },
-              ],
-              responsive: true
+              ]
             });
             $('#table-filter').on('change', function(){
               table.search(this.value).draw();   

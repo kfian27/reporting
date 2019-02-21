@@ -69,11 +69,16 @@
                 <ul class="nav side-menu">
                   <li><a><i class="fa fa-file"></i> Parsial/Mandiri <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="<?php echo base_url(); ?>admin/laporan_mandiri">Laporan</a></li>
-                      <li><a href="<?php echo base_url();?>admin/laporan_mandiri_tahunan">Laporan Tahunan</a></li>
+                      <li><a href="<?php echo base_url(); ?>laporan_mandiri/search">Laporan</a></li>
+                      <li><a href="<?php echo base_url();?>laporan_mandiri/tahunan">Laporan Tahunan</a></li>
                     </ul>
                   </li>
-                  <li><a href="<?php echo base_url(); ?>admin/laporan_paket"><i class="fa fa-file-o"></i> Paket </a></li>
+                  <li><a><i class="fa fa-file-o"></i> Paket <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="<?php echo base_url(); ?>laporan_paket/search">Laporan</a></li>
+                      <li><a href="<?php echo base_url();?>laporan_paket/tahunan">Laporan Tahunan</a></li>
+                    </ul>
+                  </li>
                 </ul>
               </div>
             </div>
