@@ -18,16 +18,16 @@
                             <thead>
                               <tr>
                                 <th style="max-width: 10%;">NO</th>
-                                <th style="text-align: center; max-width: 25%;">NO PENDAFTARAN</th>
+                                <th style="text-align: center; max-width: 25%;" data-priority "1">NO PENDAFTARAN</th>
                                 <th style="text-align: center; max-width: 25%;">TANGGAL PENDAFTARAN</th>
                                 <th style="text-align: center; max-width: 25%;">NAMA PEMOHON</th>
                                 <th style="text-align: center; max-width: 25%;">STATUS BERKAS</th>
-                                <th style="text-align: center; max-width: 25%;"></th>
                                 <th>ALAMAT PEMOHON</th>
                                 <th>NAMA PERUSAHAAN</th>
                                 <th>ALAMAT PERUSAHAAN</th>
                                 <th>WAKTU PROSES</th>
                                 <th>NOMOR SK</th>
+                                <th style="text-align: center; max-width: 25%;" data-priority "2"></th>
                               </tr>
                             </thead>
                             <tbody>

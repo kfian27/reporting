@@ -31,16 +31,16 @@
                             <thead>
                               <tr>
                                 <th width="10%">NO</th>
-                                <th style="text-align: center;" width="20%">NO PENDAFTARAN</th>
+                                <th style="text-align: center;" width="20%" data-priority "1">NO PENDAFTARAN</th>
                                 <th style="text-align: center;" width="20%">TANGGAL PENDAFTARAN</th>
                                 <th style="text-align: center;" width="20%">NAMA PEMOHON</th>
                                 <th style="text-align: center;" width="20%">STATUS BERKAS</th>
-                                <th style="text-align: center;" width="10%"></th>
                                 <th>ALAMAT PEMOHON</th>
                                 <th>NAMA PERUSAHAAN</th>
                                 <th>ALAMAT PERUSAHAAN</th>
                                 <th>WAKTU PROSES</th>
                                 <th>NOMOR SK</th>
+                                <th style="text-align: center;" width="10%" data-priority "2"></th>
                               </tr>
                             </thead>
                             <tbody>
@@ -54,9 +54,6 @@
                                 </td>
                                 <td width="20%"><?php echo $row->NAMAPEMOHON;?></td>
                                 <td width="20%"><?php echo $row->NAMA_ALUR_PROSES;?></td>
-                                <td width="10%">
-                                  <a type="button" style="font-size: 20px" href="<?php echo base_url();?>laporan_mandiri/histori_detail/<?php echo $tanggalnya;?>/<?php echo $row->NO_OL;?>"><i class="fa fa-search-plus"></i></a>
-                                </td>
                                 <td><?php 
                                   if ($row->ALAMATPEMOHON == NULL || $row->ALAMATPEMOHON == 'JL' ) {
                                     echo "tidak ada alamat pemohon";
@@ -88,6 +85,9 @@
                                   ?> Hari kerja
                                 </td>
                                 <td><?php echo $row->NO_SK; $a++;?></td>
+                                <td width="10%">
+                                  <a type="button" style="font-size: 20px" href="<?php echo base_url();?>laporan_mandiri/histori_detail/<?php echo $tanggalnya;?>/<?php echo $row->NO_OL;?>"><i class="fa fa-search-plus"></i></a>
+                                </td>
                               </tr>
                               <?php endforeach; ?>
                             </tbody>

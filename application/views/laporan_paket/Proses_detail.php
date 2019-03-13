@@ -18,15 +18,15 @@
                             <thead>
                               <tr>
                                 <th style="max-width: 10%;">NO</th>
-                                <th style="text-align: center; max-width: 25%;">NO PENDAFTARAN</th>
+                                <th style="text-align: center; max-width: 25%;" data-priority "1">NO PENDAFTARAN</th>
                                 <th style="text-align: center; max-width: 25%;">TANGGAL PENDAFTARAN</th>
                                 <th style="text-align: center; max-width: 25%;">NAMA PEMOHON</th>
-                                <th style="text-align: center; max-width: 25%;"></th>
                                 <th>ALAMAT PEMOHON</th>
                                 <th>NAMA PERUSAHAAN</th>
                                 <th>ALAMAT PERUSAHAAN</th>
                                 <th>WAKTU PROSES</th>
                                 <th>NOMOR SK</th>
+                                <th style="text-align: center; max-width: 25%;" data-priority "2"></th>
                               </tr>
                             </thead>
                             <tbody>
@@ -39,13 +39,6 @@
                                   echo $this->mlaporan_paket->tanggal_indo($tanggalnya);?>
                                 </td>
                                 <td><?php echo $row->NAMA;?></td>
-                                <td>
-                                  <?php if($judulnya == 'IMB' || $judulnya == 'SKRK'): ?>
-                                    <a type="button" style="font-size: 20px" href="<?php echo base_url();?>laporan_paket/histori_detail_imb/<?php echo $tanggalnya;?>/<?php echo $row->NO_REGISTRASI;?>/<?php echo $judulnya;?>"><i class="fa fa-search-plus"></i></a>
-                                  <?php else: ?>
-                                     <a type="button" style="font-size: 20px" href="<?php echo base_url();?>laporan_paket/histori_detail/<?php echo $tanggalnya;?>/<?php echo $row->NO_REGISTRASI;?>"><i class="fa fa-search-plus"></i></a>
-                                  <?php endif;?>
-                                </td>
                                 <td><?php echo $row->ALAMAT;?></td>
                                 <td><?php echo $row->NAMA_PERUSAHAAN;?></td>
                                  <td><?php echo $row->ALAMAT_PT;?></td>
@@ -65,6 +58,13 @@
                                   Hari kerja
                                 </td>
                                 <td><?php echo "TIDAK ADA"; $a++;?></td>
+                                 <td>
+                                  <?php if($judulnya == 'IMB' || $judulnya == 'SKRK'): ?>
+                                    <a type="button" style="font-size: 20px" href="<?php echo base_url();?>laporan_paket/histori_detail_imb/<?php echo $tanggalnya;?>/<?php echo $row->NO_REGISTRASI;?>/<?php echo $judulnya;?>"><i class="fa fa-search-plus"></i></a>
+                                  <?php else: ?>
+                                     <a type="button" style="font-size: 20px" href="<?php echo base_url();?>laporan_paket/histori_detail/<?php echo $tanggalnya;?>/<?php echo $row->NO_REGISTRASI;?>"><i class="fa fa-search-plus"></i></a>
+                                  <?php endif;?>
+                                </td>
                               </tr>
                               <?php endforeach; ?>
                             </tbody>

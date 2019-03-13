@@ -18,16 +18,16 @@
                             <thead>
                               <tr>
                                 <th style="max-width: 10%;">NO</th>
-                                <th style="text-align: center; max-width: 25%;">NO PENDAFTARAN</th>
+                                <th style="text-align: center; max-width: 25%;" data-priority "1">NO PENDAFTARAN</th>
                                 <th style="text-align: center; max-width: 25%;">TANGGAL PENDAFTARAN</th>
                                 <th style="text-align: center; max-width: 25%;">NAMA PEMOHON</th>
                                 <th style="text-align: center; max-width: 25%;">STATUS BERKAS</th>
-                                <th style="text-align: center; max-width: 25%;"></th>
                                 <th>ALAMAT PEMOHON</th>
                                 <th>NAMA PERUSAHAAN</th>
                                 <th>ALAMAT PERUSAHAAN</th>
                                 <th>WAKTU PROSES</th>
                                 <th>NOMOR SK</th>
+                                <th style="text-align: center; max-width: 25%;" data-priority "2"></th>
                               </tr>
                             </thead>
                             <tbody>
@@ -41,9 +41,6 @@
                                 </td>
                                 <td><?php echo $row->NAMAPEMOHON;?></td>
                                 <td><?php echo $row->NAMA_ALUR_PROSES;?></td>
-                                <td>
-                                  <a type="button" style="font-size: 20px" href="<?php echo base_url();?>laporan_mandiri/histori_detail/<?php echo $tanggalnya;?>/<?php echo $row->NO_OL;?>"><i class="fa fa-search-plus"></i></a>
-                                </td>
                                 <td><?php echo $row->ALAMATPEMOHON;?></td>
                                 <td><?php echo $row->NAMA_PT;?></td>
                                 <td><?php echo $row->ALAMAT_PT;?></td>
@@ -53,6 +50,9 @@
                                   ?> Hari kerja
                                 </td>
                                 <td><?php echo $row->NO_SK; $a++;?></td>
+                                <td>
+                                  <a type="button" style="font-size: 20px" href="<?php echo base_url();?>laporan_mandiri/histori_detail/<?php echo $tanggalnya;?>/<?php echo $row->NO_OL;?>"><i class="fa fa-search-plus"></i></a>
+                                </td>
                               </tr>
                               <?php endforeach; ?>
                             </tbody>
@@ -67,14 +67,6 @@
          <script type="text/javascript">
           $(document).ready(function() {
             $("#coba-table").DataTable({
-              columnDefs: [
-                { "width": "10px", "targets": 0 },
-                { "width": "100px", "targets": 1 },
-                { "width": "100px", "targets": 2 },
-                { "width": "100px", "targets": 3 },
-                { "width": "100px", "targets": 4 },
-                { "width": "10px", "targets": 5 }
-              ],
               dom: "Blfrtip",
               buttons: [
                 {
