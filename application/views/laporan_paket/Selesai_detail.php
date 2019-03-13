@@ -67,7 +67,7 @@
                                   <?php if($judulnya == 'IMB' || $judulnya == 'SKRK'): ?>
                                     <a type="button" style="font-size: 20px" href="<?php echo base_url();?>laporan_paket/histori_detail_imb/<?php echo $tanggalnya;?>/<?php echo $row->NO_REGISTRASI;?>/<?php echo $judulnya;?>"><i class="fa fa-search-plus"></i></a>
                                   <?php else: ?>
-                                     <a type="button" style="font-size: 20px" href="<?php echo base_url();?>laporan_paket/histori_detail/<?php echo $tanggalnya;?>/<?php echo $row->NO_REGISTRASI;?>"><i class="fa fa-search-plus"></i></a>
+                                     <a type="button" style="font-size: 20px" href="<?php echo base_url();?>laporan_paket/histori_detail/<?php echo $tanggalnya;?>/<?php echo $row->NO_REGISTRASI;?>/<?php $string = str_replace(' ', '_', $judulnya); echo str_replace('/', '.', $string);?>"><i class="fa fa-search-plus"></i></a>
                                   <?php endif;?>
                                 </td>
                               </tr>

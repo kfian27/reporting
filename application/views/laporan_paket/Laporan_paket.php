@@ -62,7 +62,7 @@
                               <?php $a=1; foreach ($hasilnya as $row): ?>
                               <tr>
                                   <td><?php echo $a; ?></td>
-                                  <td><?php $JUMLAHNYA = $row->JUMLAH; $nama_headernya = $row->NM_HEADER; echo $row->NM_HEADER;?></td>
+                                  <td><?php $JUMLAHNYA = 0; $nama_headernya = $row->NM_HEADER; echo $row->NM_HEADER;?></td>
                                   <td><?php 
                                   $prosesnya = $this->mlaporan_paket->get_tanggal_proses($tgl_mulainya,$tgl_akhirnya,$paketnya,$nama_headernya);
                                     if (!$prosesnya) {?>
@@ -72,7 +72,7 @@
                                     else {  
                                       foreach ($prosesnya as $row){
                                         ?>
-                                        <a type="button" data-title='button' class="btn btn-primary pull-right" href='<?php echo base_url();?>laporan_paket/proses_detail/<?php echo $tgl_mulai;?>/<?php echo $tgl_akhir;?>/<?php echo $paketnya;?>/<?php $string = str_replace(' ', '_', $nama_headernya); echo str_replace('/', '.', $string);?>/<?php echo $row->PROSES;?>'> <?php echo $row->PROSES;?> </a>
+                                        <a type="button" data-title='button' class="btn btn-primary pull-right" href='<?php echo base_url();?>laporan_paket/proses_detail/<?php echo $tgl_mulai;?>/<?php echo $tgl_akhir;?>/<?php echo $paketnya;?>/<?php $string = str_replace(' ', '_', $nama_headernya); echo str_replace('/', '.', $string);?>/<?php echo $row->PROSES;?>'> <?php echo $row->PROSES;$JUMLAHNYA = $JUMLAHNYA + $row->PROSES;?> </a>
                                         <?php
                                       }
                                     }
@@ -86,7 +86,7 @@
                                     else {  
                                       foreach ($pendingnya as $row){
                                         ?>
-                                        <a type="button" data-title='button' class="btn btn-primary pull-right" href='<?php echo base_url();?>laporan_paket/pending_detail/<?php echo $tgl_mulai;?>/<?php echo $tgl_akhir;?>/<?php echo $paketnya;?>/<?php $string = str_replace(' ', '_', $nama_headernya); echo str_replace('/', '.', $string);?>/<?php echo $row->PENDING;?>'> <?php echo $row->PENDING;?></a>
+                                        <a type="button" data-title='button' class="btn btn-primary pull-right" href='<?php echo base_url();?>laporan_paket/pending_detail/<?php echo $tgl_mulai;?>/<?php echo $tgl_akhir;?>/<?php echo $paketnya;?>/<?php $string = str_replace(' ', '_', $nama_headernya); echo str_replace('/', '.', $string);?>/<?php echo $row->PENDING;?>'> <?php echo $row->PENDING;$JUMLAHNYA = $JUMLAHNYA + $row->PENDING;?></a>
                                         <?php
                                       }
                                     }
@@ -100,7 +100,7 @@
                                     else {  
                                       foreach ($tolaknya as $row){
                                         ?>
-                                        <a type="button" data-title='button' class="btn btn-primary pull-right" href='<?php echo base_url();?>laporan_paket/tolak_detail/<?php echo $tgl_mulai;?>/<?php echo $tgl_akhir;?>/<?php echo $paketnya;?>/<?php $string = str_replace(' ', '_', $nama_headernya); echo str_replace('/', '.', $string);?>/<?php echo $row->TOLAK;?>'> <?php echo $row->TOLAK;?></a>
+                                        <a type="button" data-title='button' class="btn btn-primary pull-right" href='<?php echo base_url();?>laporan_paket/tolak_detail/<?php echo $tgl_mulai;?>/<?php echo $tgl_akhir;?>/<?php echo $paketnya;?>/<?php $string = str_replace(' ', '_', $nama_headernya); echo str_replace('/', '.', $string);?>/<?php echo $row->TOLAK;?>'> <?php echo $row->TOLAK;$JUMLAHNYA = $JUMLAHNYA + $row->TOLAK;?></a>
                                         <?php
                                       }
                                     }
@@ -115,7 +115,7 @@
                                     else {  
                                       foreach ($selesainya as $row){
                                         ?>
-                                        <a type="button" data-title='button' class="btn btn-primary pull-right" href='<?php echo base_url();?>laporan_paket/selesai_detail/<?php echo $tgl_mulai;?>/<?php echo $tgl_akhir;?>/<?php echo $paketnya;?>/<?php $string = str_replace(' ', '_', $nama_headernya); echo str_replace('/', '.', $string);?>/<?php echo $row->SELESAI;?>'> <?php echo $row->SELESAI;?> </a>
+                                        <a type="button" data-title='button' class="btn btn-primary pull-right" href='<?php echo base_url();?>laporan_paket/selesai_detail/<?php echo $tgl_mulai;?>/<?php echo $tgl_akhir;?>/<?php echo $paketnya;?>/<?php $string = str_replace(' ', '_', $nama_headernya); echo str_replace('/', '.', $string);?>/<?php echo $row->SELESAI;?>'> <?php echo $row->SELESAI;$JUMLAHNYA = $JUMLAHNYA + $row->SELESAI;?> </a>
                                         <?php
                                       }
                                     }

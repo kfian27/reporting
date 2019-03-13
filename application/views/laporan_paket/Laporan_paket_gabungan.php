@@ -70,22 +70,22 @@
                             </thead>
                             <tbody>
                               <?php $a=1; foreach ($hasilnya as $row): ?>
-                              <?php $JUMLAHNYA = $row->JUMLAH; $nama_headernya = $row->NM_HEADER; ?>
+                              <?php $JUMLAHNYA = 0; $nama_headernya = $row->NM_HEADER; ?>
                               <?php if($nama_headernya == "Ijin Mendirikan Bangunan"):?>
                                 <tr>
                                     <td><?php echo $a; ?></td>
                                     <td><?php echo $row->NM_HEADER;?></td>
                                     <td>
-                                     <a type='button' data-title='button' href='<?php echo base_url();?>laporan_paket/proses_detail/<?php echo $tgl_mulai;?>/<?php echo $tgl_akhir;?>/<?php echo $paketnya;?>/IMB/<?php echo $prosesnya_imb;?>' <?php if($prosesnya_imb==0)echo "class='btn btn-default pull-right' disabled";else echo "class='btn btn-primary pull-right'";?>><?php echo $prosesnya_imb;?></a>
+                                     <a type='button' data-title='button' href='<?php echo base_url();?>laporan_paket/proses_detail/<?php echo $tgl_mulai;?>/<?php echo $tgl_akhir;?>/<?php echo $paketnya;?>/IMB/<?php echo $prosesnya_imb;?>' <?php if($prosesnya_imb==0)echo "class='btn btn-default pull-right' disabled";else echo "class='btn btn-primary pull-right'";?>><?php echo $prosesnya_imb;$JUMLAHNYA = $JUMLAHNYA + $prosesnya_imb;?></a>
                                     </td>
                                    <td>
-                                     <a type='button' data-title='button' href='<?php echo base_url();?>laporan_paket/pending_detail/<?php echo $tgl_mulai;?>/<?php echo $tgl_akhir;?>/<?php echo $paketnya;?>/IMB/<?php echo $pendingnya_imb;?>' <?php if($pendingnya_imb==0)echo "class='btn btn-default pull-right' disabled";else echo "class='btn btn-primary pull-right'";?>><?php echo $pendingnya_imb;?></a>
+                                     <a type='button' data-title='button' href='<?php echo base_url();?>laporan_paket/pending_detail/<?php echo $tgl_mulai;?>/<?php echo $tgl_akhir;?>/<?php echo $paketnya;?>/IMB/<?php echo $pendingnya_imb;?>' <?php if($pendingnya_imb==0)echo "class='btn btn-default pull-right' disabled";else echo "class='btn btn-primary pull-right'";?>><?php echo $pendingnya_imb;$JUMLAHNYA = $JUMLAHNYA + $pendingnya_imb;?></a>
                                     </td>
                                     <td>
-                                     <a type='button' data-title='button' href='<?php echo base_url();?>tolak_detail/<?php echo $tgl_mulai;?>/<?php echo $tgl_akhir;?>/<?php echo $paketnya;?>/IMB/<?php echo $tolaknya_imb;?>' <?php if($tolaknya_imb==0)echo "class='btn btn-default pull-right' disabled";else echo "class='btn btn-primary pull-right'";?>><?php echo $tolaknya_imb;?></a>
+                                     <a type='button' data-title='button' href='<?php echo base_url();?>tolak_detail/<?php echo $tgl_mulai;?>/<?php echo $tgl_akhir;?>/<?php echo $paketnya;?>/IMB/<?php echo $tolaknya_imb;?>' <?php if($tolaknya_imb==0)echo "class='btn btn-default pull-right' disabled";else echo "class='btn btn-primary pull-right'";?>><?php echo $tolaknya_imb;$JUMLAHNYA = $JUMLAHNYA + $tolaknya_imb;?></a>
                                     </td>
                                     <td>
-                                     <a type='button' data-title='button' href='<?php echo base_url();?>laporan_paket/selesai_detail/<?php echo $tgl_mulai;?>/<?php echo $tgl_akhir;?>/<?php echo $paketnya;?>/IMB/<?php echo $selesainya_imb;?>' <?php if($selesainya_imb==0)echo "class='btn btn-default pull-right' disabled";else echo "class='btn btn-primary pull-right'";?>><?php echo $selesainya_imb;?></a>
+                                     <a type='button' data-title='button' href='<?php echo base_url();?>laporan_paket/selesai_detail/<?php echo $tgl_mulai;?>/<?php echo $tgl_akhir;?>/<?php echo $paketnya;?>/IMB/<?php echo $selesainya_imb;?>' <?php if($selesainya_imb==0)echo "class='btn btn-default pull-right' disabled";else echo "class='btn btn-primary pull-right'";?>><?php echo $selesainya_imb;$JUMLAHNYA = $JUMLAHNYA + $selesainya_imb;?></a>
                                     </td>
                                     <td><?php echo $JUMLAHNYA; $a++;?></td>
                                 </tr>
@@ -94,16 +94,16 @@
                                   <td><?php echo $a; ?></td>
                                   <td><?php echo $row->NM_HEADER;?></td>
                                   <td>
-                                   <a type='button' data-title='button' href='<?php echo base_url();?>laporan_paket/proses_detail/<?php echo $tgl_mulai;?>/<?php echo $tgl_akhir;?>/<?php echo $paketnya;?>/SKRK/<?php echo $prosesnya_skrk;?>' <?php if($prosesnya_skrk==0)echo "class='btn btn-default pull-right' disabled";else echo "class='btn btn-primary pull-right'";?>><?php echo $prosesnya_skrk;?></a>
+                                   <a type='button' data-title='button' href='<?php echo base_url();?>laporan_paket/proses_detail/<?php echo $tgl_mulai;?>/<?php echo $tgl_akhir;?>/<?php echo $paketnya;?>/SKRK/<?php echo $prosesnya_skrk;?>' <?php if($prosesnya_skrk==0)echo "class='btn btn-default pull-right' disabled";else echo "class='btn btn-primary pull-right'";?>><?php echo $prosesnya_skrk;$JUMLAHNYA = $JUMLAHNYA + $prosesnya_skrk;?></a>
                                   </td>
                                   <td>
-                                   <a type='button' data-title='button' href='<?php echo base_url();?>laporan_paket/pending_detail/<?php echo $tgl_mulai;?>/<?php echo $tgl_akhir;?>/<?php echo $paketnya;?>/SKRK/<?php echo $pendingnya_skrk;?>' <?php if($pendingnya_skrk==0)echo "class='btn btn-default pull-right' disabled";else echo "class='btn btn-primary pull-right'";?>><?php echo $pendingnya_skrk;?></a>
+                                   <a type='button' data-title='button' href='<?php echo base_url();?>laporan_paket/pending_detail/<?php echo $tgl_mulai;?>/<?php echo $tgl_akhir;?>/<?php echo $paketnya;?>/SKRK/<?php echo $pendingnya_skrk;?>' <?php if($pendingnya_skrk==0)echo "class='btn btn-default pull-right' disabled";else echo "class='btn btn-primary pull-right'";?>><?php echo $pendingnya_skrk;$JUMLAHNYA = $JUMLAHNYA + $pendingnya_skrk;?></a>
                                   </td>
                                   <td>
-                                   <a type='button' data-title='button' href='<?php echo base_url();?>laporan_paket/tolak_detail/<?php echo $tgl_mulai;?>/<?php echo $tgl_akhir;?>/<?php echo $paketnya;?>/SKRK/<?php echo $tolaknya_skrk;?>' <?php if($tolaknya_skrk==0)echo "class='btn btn-default pull-right' disabled";else echo "class='btn btn-primary pull-right'";?>><?php echo $tolaknya_skrk;?></a>
+                                   <a type='button' data-title='button' href='<?php echo base_url();?>laporan_paket/tolak_detail/<?php echo $tgl_mulai;?>/<?php echo $tgl_akhir;?>/<?php echo $paketnya;?>/SKRK/<?php echo $tolaknya_skrk;?>' <?php if($tolaknya_skrk==0)echo "class='btn btn-default pull-right' disabled";else echo "class='btn btn-primary pull-right'";?>><?php echo $tolaknya_skrk;$JUMLAHNYA = $JUMLAHNYA + $tolaknya_imb;?></a>
                                   </td>
                                   <td>
-                                   <a type='button' data-title='button' href='<?php echo base_url();?>laporan_paket/selesai_detail/<?php echo $tgl_mulai;?>/<?php echo $tgl_akhir;?>/<?php echo $paketnya;?>/SKRK/<?php echo $selesainya_skrk;?>' <?php if($selesainya_skrk==0)echo "class='btn btn-default pull-right' disabled";else echo "class='btn btn-primary pull-right'";?>><?php echo $selesainya_skrk;?></a>
+                                   <a type='button' data-title='button' href='<?php echo base_url();?>laporan_paket/selesai_detail/<?php echo $tgl_mulai;?>/<?php echo $tgl_akhir;?>/<?php echo $paketnya;?>/SKRK/<?php echo $selesainya_skrk;?>' <?php if($selesainya_skrk==0)echo "class='btn btn-default pull-right' disabled";else echo "class='btn btn-primary pull-right'";?>><?php echo $selesainya_skrk;$JUMLAHNYA = $JUMLAHNYA + $selesainya_skrk;?></a>
                                   </td>
                                   <td><?php echo $JUMLAHNYA; $a++;?></td>
                               </tr>
@@ -120,7 +120,7 @@
                                       else {  
                                         foreach ($prosesnya as $row){
                                           ?>
-                                          <a type="button" data-title='button' class="btn btn-primary pull-right" href='<?php echo base_url();?>laporan_paket/proses_detail/<?php echo $tgl_mulai;?>/<?php echo $tgl_akhir;?>/<?php echo $paketnya;?>/<?php $string = str_replace(' ', '_', $nama_headernya); echo str_replace('/', '.', $string);?>/<?php echo $row->PROSES;?>'> <?php echo $row->PROSES;?> </a>
+                                          <a type="button" data-title='button' class="btn btn-primary pull-right" href='<?php echo base_url();?>laporan_paket/proses_detail/<?php echo $tgl_mulai;?>/<?php echo $tgl_akhir;?>/<?php echo $paketnya;?>/<?php $string = str_replace(' ', '_', $nama_headernya); echo str_replace('/', '.', $string);?>/<?php echo $row->PROSES;?>'> <?php echo $row->PROSES;$JUMLAHNYA = $JUMLAHNYA + $row->PROSES;?> </a>
                                           <?php
                                         }
                                       }
@@ -134,7 +134,7 @@
                                       else {  
                                         foreach ($pendingnya as $row){
                                           ?>
-                                          <a type="button" data-title='button' class="btn btn-primary pull-right" href='<?php echo base_url();?>laporan_paket/pending_detail/<?php echo $tgl_mulai;?>/<?php echo $tgl_akhir;?>/<?php echo $paketnya;?>/<?php $string = str_replace(' ', '_', $nama_headernya); echo str_replace('/', '.', $string);?>/<?php echo $row->PENDING;?>'> <?php echo $row->PENDING;?></a>
+                                          <a type="button" data-title='button' class="btn btn-primary pull-right" href='<?php echo base_url();?>laporan_paket/pending_detail/<?php echo $tgl_mulai;?>/<?php echo $tgl_akhir;?>/<?php echo $paketnya;?>/<?php $string = str_replace(' ', '_', $nama_headernya); echo str_replace('/', '.', $string);?>/<?php echo $row->PENDING;?>'> <?php echo $row->PENDING;$JUMLAHNYA = $JUMLAHNYA + $row->PENDING;?></a>
                                           <?php
                                         }
                                       }
@@ -148,7 +148,7 @@
                                       else {  
                                         foreach ($tolaknya as $row){
                                           ?>
-                                          <a type="button" data-title='button' class="btn btn-primary pull-right" href='<?php echo base_url();?>laporan_paket/tolak_detail/<?php echo $tgl_mulai;?>/<?php echo $tgl_akhir;?>/<?php echo $paketnya;?>/<?php $string = str_replace(' ', '_', $nama_headernya); echo str_replace('/', '.', $string);?>/<?php echo $row->TOLAK;?>'> <?php echo $row->TOLAK;?></a>
+                                          <a type="button" data-title='button' class="btn btn-primary pull-right" href='<?php echo base_url();?>laporan_paket/tolak_detail/<?php echo $tgl_mulai;?>/<?php echo $tgl_akhir;?>/<?php echo $paketnya;?>/<?php $string = str_replace(' ', '_', $nama_headernya); echo str_replace('/', '.', $string);?>/<?php echo $row->TOLAK;?>'> <?php echo $row->TOLAK;$JUMLAHNYA = $JUMLAHNYA + $row->TOLAK;?></a>
                                           <?php
                                         }
                                       }
@@ -163,7 +163,7 @@
                                       else {  
                                         foreach ($selesainya as $row){
                                           ?>
-                                          <a type="button" data-title='button' class="btn btn-primary pull-right" href='<?php echo base_url();?>laporan_paket/selesai_detail/<?php echo $tgl_mulai;?>/<?php echo $tgl_akhir;?>/<?php echo $paketnya;?>/<?php $string = str_replace(' ', '_', $nama_headernya); echo str_replace('/', '.', $string);?>/<?php echo $row->SELESAI;?>'> <?php echo $row->SELESAI;?> </a>
+                                          <a type="button" data-title='button' class="btn btn-primary pull-right" href='<?php echo base_url();?>laporan_paket/selesai_detail/<?php echo $tgl_mulai;?>/<?php echo $tgl_akhir;?>/<?php echo $paketnya;?>/<?php $string = str_replace(' ', '_', $nama_headernya); echo str_replace('/', '.', $string);?>/<?php echo $row->SELESAI;?>'> <?php echo $row->SELESAI;$JUMLAHNYA = $JUMLAHNYA + $row->SELESAI;?> </a>
                                           <?php
                                         }
                                       }
