@@ -61,7 +61,7 @@
                                   <td><?php echo $row->NM_HEADER;?></td>
                                   <td><?php echo $row->JUMLAHNYA; $a++;?></td>
                                   <td>
-                                    <a type="button" data-title='Edit' class="btn btn-primary pull-right" href="<?php echo base_url();?>laporan_mandiri/detail/<?php echo $tgl_mulai;?>/<?php echo $tgl_akhir;?>/<?php $string = str_replace(' ', '_', $row->NM_HEADER); echo str_replace('/', '.', $string);?>/<?php echo $row->JUMLAHNYA;?>"> View Details </a>
+                                    <a type="button" data-title='Edit' class="btn btn-primary pull-right" href="<?php echo base_url();?>laporan_mandiri/detail/<?php echo $tgl_mulai;?>/<?php echo $tgl_akhir;?>/<?php $string = str_replace(' ', '_', $row->NM_HEADER); $string1 = str_replace('/', '.', $string); echo str_replace('&', '1', $string1)?>/<?php echo $row->JUMLAHNYA;?>/<?php echo $dinas;?>"> View Details </a>
                                   </td>
                               </tr>
                               <?php endforeach; ?>

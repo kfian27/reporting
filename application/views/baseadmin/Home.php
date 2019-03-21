@@ -15,7 +15,7 @@
            </div>
             <a href="<?php echo base_url(); ?>laporan_mandiri">
               <div class="col-md-6 col-sm-12 col-xs-12">
-                <div class="tile-stats" style="background-color: #5bc0de; border-color: #5bc0de;">
+                <div class="tile-stats" style="background-color: #2d6aa0; border-color: #2d6aa0;">
                   <div class="icon" style="color: #fbfbfb"> <i class="fa fa-file" style="margin-left: 5px;"></i></div>
                   <div class="count" style="color: #fbfbfb"><?php echo $jumlah_parsial;?></div>
                   <h3 style="color: #fbfbfb">Parsial/Mandiri</h3>
@@ -25,7 +25,7 @@
             </a>
             <a href="<?php echo base_url(); ?>laporan_paket">
               <div class="col-md-6 col-sm-12 col-xs-12">
-                <div class="tile-stats" style="background-color: #5bc0de; border-color: #5bc0de;">
+                <div class="tile-stats" style="background-color: #2d6aa0; border-color: #2d6aa0;">
                   <div class="icon" style="color: #fbfbfb"> <i class="fa fa-file" style="margin-left: 5px;"></i></div>
                   <div class="count" style="color: #fbfbfb"><?php echo $jumlah_paket;?></div>
                   <h3 style="color: #fbfbfb">Paket</h3>

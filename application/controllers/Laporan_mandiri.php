@@ -76,14 +76,15 @@ class laporan_mandiri extends CI_Controller {
 		$this->load->view('laporan/laporan.php',$data);
 		$this->load->view('baseadmin/footer.php');
 	}
-	public function detail($tgl_mulai,$tgl_akhir,$parameternya,$jumlah_total) {
+	public function detail($tgl_mulai,$tgl_akhir,$parameternya,$jumlah_total,$uptdnya) {
 		//$tanggal = date('Y-m');
 		$this->load->model('mlaporan');
 		$parameternya1 = str_replace('_', ' ', $parameternya);
 		$parameternya1 = str_replace('.', '/', $parameternya1);
+		$parameternya1 = str_replace('1', '&', $parameternya1);
 		$tgl_mulainya = date('Y-m-d', strtotime($tgl_mulai));
 		$tgl_akhirnya = date('Y-m-d', strtotime($tgl_akhir));
-		$data['hasilnya'] = $this->mlaporan->get_details_tanggal($tgl_mulainya,$tgl_akhirnya,$parameternya1);
+		$data['hasilnya'] = $this->mlaporan->get_details_tanggal($tgl_mulainya,$tgl_akhirnya,$parameternya1,$uptdnya);
 		$data['hasilnya1'] = $this->mlaporan->get_pie_proses($tgl_mulainya,$tgl_akhirnya,$parameternya1);
 		$data['judulnya'] = $parameternya1;
 		$data['tgl_mulai'] = $tgl_mulainya;

@@ -97,8 +97,8 @@
 			$query = $this->db->query($sql);
 			return $query->result();
         }
-        function get_details_tanggal($tgl1 ='',$tgl2 ='',$param1=''){
-        	$sql = "SELECT ID,NAMA_IJIN, COUNT(NAMA_IJIN) as jumlahnya FROM (SELECT MIJIN.KD_IJIN as ID,DATA_PEMOHON.KD_IJIN, NAMA_IJIN, DATA_PEMOHON.TGL_OL, KD_SKPD FROM DATA_PEMOHON, MIJIN, ONLINE_SIMTAP WHERE MIJIN.KD_IJIN = DATA_PEMOHON.KD_IJIN AND DATA_PEMOHON.NO_OL = ONLINE_SIMTAP.NO_OL AND TO_CHAR(DATA_PEMOHON.TGL_OL,'ddmmyyyy') = TO_CHAR(ONLINE_SIMTAP.TGL_OL,'ddmmyyyy') AND DATA_PEMOHON.TGL_OL BETWEEN TO_DATE('$tgl1', 'yyyy-mm-dd') AND TO_DATE('$tgl2', 'yyyy-mm-dd') AND NM_HEADER LIKE '%$param1%' AND ID_ALUR_PROSES != 100) GROUP BY NAMA_IJIN,ID ORDER BY ID";
+        function get_details_tanggal($tgl1 ='',$tgl2 ='',$param1='',$param2){
+        	$sql = "SELECT ID,NAMA_IJIN, COUNT(NAMA_IJIN) as jumlahnya FROM (SELECT MIJIN.KD_IJIN as ID,DATA_PEMOHON.KD_IJIN, NAMA_IJIN, DATA_PEMOHON.TGL_OL, KD_SKPD FROM DATA_PEMOHON, MIJIN, ONLINE_SIMTAP WHERE MIJIN.KD_IJIN = DATA_PEMOHON.KD_IJIN AND DATA_PEMOHON.NO_OL = ONLINE_SIMTAP.NO_OL AND TO_CHAR(DATA_PEMOHON.TGL_OL,'ddmmyyyy') = TO_CHAR(ONLINE_SIMTAP.TGL_OL,'ddmmyyyy') AND DATA_PEMOHON.TGL_OL BETWEEN TO_DATE('$tgl1', 'yyyy-mm-dd') AND TO_DATE('$tgl2', 'yyyy-mm-dd') AND NM_HEADER LIKE '%$param1%' AND KD_SKPD LIKE '%$param2' AND KD_SKPD NOT LIKE '1$param2' AND KD_SKPD NOT LIKE '2$param2' AND ID_ALUR_PROSES != 100) GROUP BY NAMA_IJIN,ID ORDER BY ID";
 
 			$query = $this->db->query($sql);
 			return $query->result();
